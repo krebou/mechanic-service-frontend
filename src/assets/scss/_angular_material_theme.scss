@@ -1,0 +1,190 @@
+@use "sass:map";
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+
+@import "variables";
+
+$indigo-palette: (
+  50: #eaeafd,
+  100: #cbc9f8,
+  200: #a7a7f4,
+  300: #8283f0,
+  400: #4e46e5,
+  500: #4e46e5,
+  600: #493dd9,
+  700: #4031cd ,
+  800: #3923c1,
+  900: #2b00b0,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+
+
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$AdminPanel-primary: mat.define-palette($indigo-palette, 500);
+$AdminPanel-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$AdminPanel-typography: mat.define-typography-config(
+  // Specify "Comic Sans" as the default font family for all levels.
+  $font-family: '"Outfit", sans-serif',
+  $caption: mat.define-typography-level(16px, 2220px, 300),
+);
+
+// The warn palette is optional (defaults to red).
+$AdminPanel-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$AdminPanel-theme: mat.define-light-theme((
+  color: (
+    primary: $AdminPanel-primary,
+    accent: $AdminPanel-accent,
+    warn: $AdminPanel-warn,
+  ),
+  typography: $AdminPanel-typography
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($AdminPanel-theme);
+
+// Emit theme-dependent styles for common features used across multiple components.
+@include mat.core-theme($AdminPanel-theme);
+
+// Emit styles for MatButton based on `$my-theme`. Because the configuration
+// passed to `define-light-theme` omits typography, `button-theme` will not
+// emit any typography styles.
+@include mat.button-theme($AdminPanel-theme);
+
+button{
+  &.mat-primary.mat-button-disabled{
+    background: map.get($indigo-palette, 300) !important;
+    color:#eee!important;
+  }
+}
+
+.button-big{
+  padding: 10px 30px !important;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.button-normal{
+  padding: 5px 20px !important;
+  text-transform: uppercase;
+}
+
+.mat-form-field-make-all{
+  .mat-form-field-wrapper{
+    padding: 0 !important;
+  }
+}
+
+// FORM FIELD
+.mat-form-field{
+  width: 100%;
+
+  margin-bottom: 2.5px;
+
+  &.mat-form-field-should-float.mat-form-field-has-label{
+    label{
+      font-size:17px;
+      transform: translateY(-1.51373em) scale(0.75) !important;
+
+    }
+
+    .mat-form-field-outline-gap{
+      padding-right: 50px !important;
+    }
+  }
+
+  label{
+    font-size: 16px;
+    top: 1.64375em !important;
+  }
+
+  input{
+    font-size: 16px;
+  }
+}
+
+
+.mat-option, .mat-select-value-text{
+  font-size: 16px !important;
+}
+
+
+//// TABLE
+
+
+table{
+  width: 100%;
+}
+
+.mat-header-cell{
+  font-size: 16px !important;
+  background: $themeColor3;
+  color:#fff;
+
+  &:not(:last-child){
+    border-right: 2px solid $themeColor2
+  }
+
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+
+  &.mat-sort-header{
+    justify-content: center;
+  }
+}
+
+
+
+.mat-row{
+  &:nth-child(even){
+    background: #f6f6f6;
+  }
+}
+
+.mat-cell{
+  font-size: 16px !important;
+
+  line-height: 1.6;
+
+  padding: 25px 15px !important;
+
+  &:not(:last-child){
+    border-right: 2px solid $themeColor2
+  }
+}
+
+.mat-table-sticky.mat-table-sticky-border-elem-top{
+  top: $dashboardTopbarHeight !important;
+  z-index: 4 !important;
+}
+
+th.cdk-column-select .mat-checkbox-frame{
+  border-color: #fff !important;
+}

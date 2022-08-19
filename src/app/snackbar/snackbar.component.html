@@ -1,0 +1,10 @@
+<div id="snackbar" *ngIf="isActive" [ngClass]="color" @simpleFadeAnimation>
+
+  <feather-icon *ngIf="color === 'success'" icon="check-circle" size="big" color="white"></feather-icon>
+  <feather-icon *ngIf="color === 'warn'" icon="alert-circle" size="big" color="white"></feather-icon>
+  <feather-icon *ngIf="color === 'primary'" icon="feather" size="big" color="white"></feather-icon>
+  <feather-icon *ngIf="color === 'accent'" icon="bell" size="big" color="white"></feather-icon>
+
+
+  <div id="snackbar-text">{{ (snackbar$ | async )?.message}}</div>
+</div>

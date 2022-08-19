@@ -1,0 +1,24 @@
+<div id="dashboard-sidebar" class="active" [ngClass]="{'active': show }">
+  <div id="sidebar-top">
+    Car Service Panel
+  </div>
+  <div id="sidebar-menu">
+    <a routerLink="/dashboard/cars">Cars </a><br>
+
+    <!--    <div class="sidebar-menu-item" *ngFor="let object of items">-->
+<!--      <div class="sidebar-menu-name">{{ object.name }}</div>-->
+<!--      <div *ngIf="object.description" class="sidebar-menu-desc">{{ object.description }}</div>-->
+<!--      <ul class="sidebar-menu-children">-->
+<!--        <li [routerLink]="menu.router" routerLinkActive="active" *ngFor="let menu of object.children" [routerLinkActiveOptions]="{exact:true}" (click)="linkClick()">-->
+<!--          <span class="icon">-->
+<!--            <feather-icon [icon]="menu.icon" size="small" color="white"></feather-icon>-->
+<!--          </span>-->
+<!--          <span class="name">{{menu.name}}</span>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </div>-->
+  </div>
+  <div id="sidebar-version">version 0.0.0</div>
+</div>
+
+

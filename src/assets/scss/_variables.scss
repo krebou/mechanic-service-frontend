@@ -1,0 +1,36 @@
+$themeColor1: #ccc;
+$themeColor2: rgb(226, 232, 240);
+$themeColor3: rgb(40, 48, 70);
+$themeColor4: rgb(134, 179, 224);
+
+$themeColorWarn: rgb(220, 38, 38);
+$themeColorPrimary: #4e46e5;
+$themeColorAccent: rgb(30, 41, 59);
+$themeColorSuccess: #22a41c;
+
+// MEDIA
+$breakpoints: (
+  'min1900'			:  ( min-width:  1900px ), /* 1900px >> X */
+  'max1900'			:  ( max-width:  1900px ), /* 0 >> 1900px */
+  'min1600'			:  ( min-width:  1600px ), /* 1600px >> X */
+  'max1600'			:  ( max-width:  1600px ), /* 0 >> 1600px */
+  'minXLmax1600'	:  ( min-width:  1200px ) and ( max-width: 1600px ), /* 1200 >> 1600px */
+  'minXL'			:  ( min-width:  1200px ), /* 1200px >> X */
+  'maxXL'			:  ( max-width:  1200px ),   /* 0 >> 1200px */
+  'minLG'			:  ( min-width:  992px ), /* 992 >> X */
+  'maxLG'			:  ( max-width:  992px ), /* 0 >> 992 */
+  'minMD'			:  ( min-width:  768px ), /* 768 >> X */
+  'maxMD'			:  ( max-width:  768px ), /* 0 >> 768 */
+  'minSM'			:  ( min-width:  576px ), /* 576 >> X */
+  'maxSM'			:  ( max-width:  576px ), /* 0 >> 576 */
+  'min450'			:  ( min-width:  450px ), /* 450 >> X */
+  'max450'			:  ( max-width:  450px ), /* 0 >> 450 */
+  'min320'			:  ( min-width:  320px ), /* 320 >> X */
+  'max320'			:  ( max-width:  320px ), /* 0 >> 320 */
+
+) !default;
+
+// DASHBOARD
+$dashboardBackground: $themeColor2;
+$dashboardSidemenuWidth:275px;
+$dashboardTopbarHeight: 65px;

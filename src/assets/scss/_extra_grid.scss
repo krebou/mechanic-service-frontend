@@ -1,0 +1,203 @@
+$namespace: 'xxl';
+
+@media (min-width: 1600px) {
+  .col-#{$namespace} {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+  .row-cols-#{$namespace}-1 > * {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .row-cols-#{$namespace}-2 > * {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .row-cols-#{$namespace}-3 > * {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+  .row-cols-#{$namespace}-4 > * {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .row-cols-#{$namespace}-5 > * {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+  .row-cols-#{$namespace}-6 > * {
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+  }
+  .col-#{$namespace}-auto {
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+  }
+  .col-#{$namespace}-1 {
+    -ms-flex: 0 0 8.333333%;
+    flex: 0 0 8.333333%;
+    max-width: 8.333333%;
+  }
+  .col-#{$namespace}-2 {
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+  }
+  .col-#{$namespace}-3 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .col-#{$namespace}-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+  .col-#{$namespace}-5 {
+    -ms-flex: 0 0 41.666667%;
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+  }
+  .col-#{$namespace}-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-#{$namespace}-7 {
+    -ms-flex: 0 0 58.333333%;
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+  }
+  .col-#{$namespace}-8 {
+    -ms-flex: 0 0 66.666667%;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+  .col-#{$namespace}-9 {
+    -ms-flex: 0 0 75%;
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+  .col-#{$namespace}-10 {
+    -ms-flex: 0 0 83.333333%;
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+  }
+  .col-#{$namespace}-11 {
+    -ms-flex: 0 0 91.666667%;
+    flex: 0 0 91.666667%;
+    max-width: 91.666667%;
+  }
+  .col-#{$namespace}-12 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .order-#{$namespace}-first {
+    -ms-flex-order: -1;
+    order: -1;
+  }
+  .order-#{$namespace}#{$namespace}-last {
+    -ms-flex-order: 13;
+    order: 13;
+  }
+  .order-#{$namespace}#{$namespace}-0 {
+    -ms-flex-order: 0;
+    order: 0;
+  }
+  .order-#{$namespace}#{$namespace}-1 {
+    -ms-flex-order: 1;
+    order: 1;
+  }
+  .order-#{$namespace}#{$namespace}-2 {
+    -ms-flex-order: 2;
+    order: 2;
+  }
+  .order-#{$namespace}#{$namespace}-3 {
+    -ms-flex-order: 3;
+    order: 3;
+  }
+  .order-#{$namespace}#{$namespace}-4 {
+    -ms-flex-order: 4;
+    order: 4;
+  }
+  .order-#{$namespace}-5 {
+    -ms-flex-order: 5;
+    order: 5;
+  }
+  .order-#{$namespace}-6 {
+    -ms-flex-order: 6;
+    order: 6;
+  }
+  .order-#{$namespace}-7 {
+    -ms-flex-order: 7;
+    order: 7;
+  }
+  .order-#{$namespace}-8 {
+    -ms-flex-order: 8;
+    order: 8;
+  }
+  .order-#{$namespace}-9 {
+    -ms-flex-order: 9;
+    order: 9;
+  }
+  .order-#{$namespace}-10 {
+    -ms-flex-order: 10;
+    order: 10;
+  }
+  .order-#{$namespace}-11 {
+    -ms-flex-order: 11;
+    order: 11;
+  }
+  .order-#{$namespace}-12 {
+    -ms-flex-order: 12;
+    order: 12;
+  }
+  .offset-#{$namespace}-0 {
+    margin-left: 0;
+  }
+  .offset-#{$namespace}-1 {
+    margin-left: 8.333333%;
+  }
+  .offset-#{$namespace}-2 {
+    margin-left: 16.666667%;
+  }
+  .offset-#{$namespace}-3 {
+    margin-left: 25%;
+  }
+  .offset-#{$namespace}-4 {
+    margin-left: 33.333333%;
+  }
+  .offset-#{$namespace}-5 {
+    margin-left: 41.666667%;
+  }
+  .offset-#{$namespace}-6 {
+    margin-left: 50%;
+  }
+  .offset-#{$namespace}-7 {
+    margin-left: 58.333333%;
+  }
+  .offset-#{$namespace}-8 {
+    margin-left: 66.666667%;
+  }
+  .offset-#{$namespace}-9 {
+    margin-left: 75%;
+  }
+  .offset-#{$namespace}-10 {
+    margin-left: 83.333333%;
+  }
+  .offset-#{$namespace}-11 {
+    margin-left: 91.666667%;
+  }
+}

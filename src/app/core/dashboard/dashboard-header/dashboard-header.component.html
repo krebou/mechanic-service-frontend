@@ -1,0 +1,27 @@
+<div id="page-header">
+  <ul id="page-header-navbar">
+    <ng-container *ngFor="let item of navi">
+      <li *ngIf="item.title !== '' && item.slug === 'dashboard'; else rest">
+        <feather-icon icon="home" color="theme3" size="small"></feather-icon>
+      </li>
+      <ng-template #rest>
+        <li>
+          <span class="arrow-span">
+            <feather-icon icon="chevrons-right" size="small" color="theme4"></feather-icon>
+          </span>
+        </li>
+        <li>
+          <a [routerLink]="item.url">{{ item.title }}</a>
+        </li>
+      </ng-template>
+    </ng-container>
+  </ul>
+  <div id="page-header-left">
+    <h1 id="title">{{title}}</h1>
+    <p id="subtitle" *ngIf="subtitle">{{subtitle}}</p>
+  </div>
+
+  <div id="page-header-right">
+    <ng-content #right></ng-content>
+  </div>
+</div>

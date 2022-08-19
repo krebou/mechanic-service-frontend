@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "commonChunk": true,
             "outputPath": "dist/cv-car-service",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -30,6 +31,9 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [ "src/assets/scss"]
+            },
             "scripts": []
           },
           "configurations": {

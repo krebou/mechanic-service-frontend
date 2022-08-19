@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@import "normalize@8.0.1";
+@import "bootstrap_grid";
+@import "extra_grid";
+@import "angular_material_theme";
+@import "defaults";
+//@import "src/assets/scss/mixins";
+
+*{
+  box-sizing: border-box;
+}
+body, html{
+  font-family: 'Outfit', sans-serif;
+  color:#000;
+
+  height: 100%;
+}
+
+.template-padding{
+  padding-left: 50px;
+  padding-right: 50px;
+}
+

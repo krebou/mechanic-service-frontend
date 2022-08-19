@@ -1,0 +1,56 @@
+@import "variables";
+@import "mixins";
+
+// H1 - H6
+$hFontSize: 44px;
+$hDiff: 4px;
+
+h1, h2, h3, h4, h5, h6{
+  color: $themeColor3;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+h1{ font-size: $hFontSize; }
+h2{ font-size: $hFontSize - $hDiff; }
+h3{ font-size: $hFontSize - $hDiff * 2; }
+h4{ font-size: $hFontSize - $hDiff * 4; }
+h5{ font-size: $hFontSize - $hDiff * 5; }
+h6{ font-size: $hFontSize - $hDiff * 6; }
+
+@include rwd('max1600'){
+  $hFontSize: 40px;
+  $hDiff: 4px;
+
+  h1{ font-size: $hFontSize; }
+  h2{ font-size: $hFontSize - $hDiff; }
+  h3{ font-size: $hFontSize - $hDiff * 2; }
+  h4{ font-size: $hFontSize - $hDiff * 4; }
+  h5{ font-size: $hFontSize - $hDiff * 5; }
+  h6{ font-size: $hFontSize - $hDiff * 6; }
+}
+
+@include rwd('maxLG'){
+  $hFontSize: 32px;
+  $hDiff: 3px;
+
+  h1{ font-size: $hFontSize; }
+  h2{ font-size: $hFontSize - $hDiff; }
+  h3{ font-size: $hFontSize - $hDiff * 2; }
+  h4{ font-size: $hFontSize - $hDiff * 4; }
+  h5{ font-size: $hFontSize - $hDiff * 5; }
+  h6{ font-size: $hFontSize - $hDiff * 6; }
+}
+
+
+@include rwd('maxSM'){
+  $hFontSize: 28px;
+  $hDiff: 3px;
+
+  h1{ font-size: $hFontSize; }
+  h2{ font-size: $hFontSize - $hDiff; }
+  h3{ font-size: $hFontSize - $hDiff * 2; }
+  h4{ font-size: $hFontSize - $hDiff * 4; }
+  h5{ font-size: $hFontSize - $hDiff * 5; }
+  h6{ font-size: $hFontSize - $hDiff * 6; }
+}

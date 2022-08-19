@@ -1,0 +1,99 @@
+@import "variables";
+
+/// Mixin to manage responsive breakpoints
+/// @author Hugo Giraudel
+/// @param {String} $breakpoint - Breakpoint name
+/// @require $breakpoints
+@mixin rwd($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  }
+
+    // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+@mixin transition( $settings ){
+  transition:  $settings;
+  -webkit-transition: $settings;
+}
+
+@mixin hoverEffect( $settings ){
+  transition:  $settings;
+  -webkit-transition: $settings;
+}
+
+@mixin makeTransform( $transform ){
+  -webkit-transform: $transform;
+  -moz-transform: $transform;
+  -ms-transform: $transform;
+  -o-transform: $transform;
+  transform: $transform;
+}
+
+@mixin placeholder( $what, $val,){
+  &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    #{$what}: $val;
+  }
+  &::-moz-placeholder { /* Firefox 19+ */
+    #{$what}: $val;
+  }
+  &:-ms-input-placeholder { /* IE 10+ */
+    #{$what}: $val;
+  }
+  &:-moz-placeholder { /* Firefox 18- */
+    #{$what}: $val;
+  }
+}
+
+@mixin boxShadow( $settings ){
+  -webkit-box-shadow: $settings;
+  -moz-box-shadow: $settings;
+  box-shadow: $settings;
+}
+
+@mixin calc( $what, $calc ){
+  #{$what}: -webkit-calc(#{$calc});
+  #{$what}: expression(#{$calc});
+  #{$what}: -moz-calc(#{$calc});
+  #{$what}: -o-calc(#{$calc});
+  #{$what}: calc(#{$calc});
+}
+
+@mixin borderRadius( $radius ){
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin animation( $animation ){
+  -webkit-animation: $animation;
+  animation: $animation;
+}
+
+@mixin hyphens( $value ){
+  -webkit-hyphens: $value;
+  -ms-hyphens: $value;
+  hyphens: $value;
+}
+
+@mixin keyFrames( $name ){
+
+  /* Safari 4.0 - 8.0 */
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+
+  /* Standard syntax */
+  @keyframes #{$name} {
+    @content;
+  }
+
+}
