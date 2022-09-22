@@ -1,0 +1,29 @@
+<div class="box-info">
+    <h4>Podsumowanie kosztów</h4>
+    <div class="row summary-cost-row">
+        <div [class]="colClassLeft">Ilość produktów:</div>
+        <div [class]="colClassRight">{{ summaryCost.countAll }} szt.</div>
+    </div>
+
+    <div class="row summary-cost-row">
+        <div [class]="colClassLeft">Wartość netto:</div>
+        <div [class]="colClassRight">{{ summaryCost.priceNettoAll | priceFormat }}</div>
+    </div>
+
+    <div class="row summary-cost-row">
+        <div [class]="colClassLeft">w tym VAT:</div>
+        <div [class]="colClassRight">{{ summaryCost.taxAll | priceFormat }}</div>
+    </div>
+
+    <div class="row summary-cost-row">
+        <div [class]="colClassLeft">Wartość brutto:</div>
+        <div [class]="colClassRight">{{ summaryCost.priceBruttoAll | priceFormat }}</div>
+    </div>
+
+    <div class="row summary-cost-total">
+        <div class="summary-cost-total-label col-12">Do zapłaty</div>
+        <div class="summary-cost-total-value col-12">
+            {{ summaryCost.priceBruttoAll | priceFormat }}
+        </div>
+    </div>
+</div>

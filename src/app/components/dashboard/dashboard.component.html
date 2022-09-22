@@ -1,0 +1,16 @@
+<div
+    id="dashboard-sidemenu-overlay"
+    [ngClass]="{ active: (sidemenu$ | async)?.show && (sidemenu$ | async)?.mobile }"
+    (click)="closeMenu()"
+></div>
+<app-sidemenu></app-sidemenu>
+<div id="dashboard-content" [ngClass]="{ active: (sidemenu$ | async)?.show }">
+    <mat-progress-bar
+        class="progress-bar"
+        mode="query"
+        *ngIf="progressbar$ | async"
+    ></mat-progress-bar>
+    <app-topbar></app-topbar>
+    <router-outlet></router-outlet>
+</div>
+<app-snackbar></app-snackbar>

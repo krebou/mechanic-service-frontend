@@ -7,6 +7,7 @@
 
 
 @import "variables";
+@import "mixins";
 
 $indigo-palette: (
   50: #eaeafd,
@@ -33,6 +34,31 @@ $indigo-palette: (
   )
 );
 
+$light-palette: (
+  50: #eaeafd,
+  100: #cbc9f8,
+  200: #a7a7f4,
+  300: #8283f0,
+  400: #4e46e5,
+  500: rgb(226, 232, 240),
+  600: #493dd9,
+  700: #4031cd ,
+  800: #3923c1,
+  900: #2b00b0,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: rgb(126, 130, 153),
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+
 
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -44,7 +70,7 @@ $indigo-palette: (
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $AdminPanel-primary: mat.define-palette($indigo-palette, 500);
-$AdminPanel-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$AdminPanel-accent: mat.define-palette($light-palette, 500);
 $AdminPanel-typography: mat.define-typography-config(
   // Specify "Comic Sans" as the default font family for all levels.
   $font-family: '"Outfit", sans-serif',
@@ -53,6 +79,7 @@ $AdminPanel-typography: mat.define-typography-config(
 
 // The warn palette is optional (defaults to red).
 $AdminPanel-warn: mat.define-palette(mat.$red-palette);
+
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
@@ -96,6 +123,16 @@ button{
   text-transform: uppercase;
 }
 
+.mat-flat-button.button-small{
+  padding: 2px 15px !important;
+  text-transform: uppercase;
+  font-size: 14px;
+  line-height: 14px !important;
+  .mat-button-wrapper{
+
+  }
+}
+
 .mat-form-field-make-all{
   .mat-form-field-wrapper{
     padding: 0 !important;
@@ -122,7 +159,7 @@ button{
 
   label{
     font-size: 16px;
-    top: 1.64375em !important;
+    //top: 1.64375em !important;
   }
 
   input{
@@ -149,7 +186,7 @@ table{
   color:#fff;
 
   &:not(:last-child){
-    border-right: 2px solid $themeColor2
+    border-right: 1px solid $themeColor2
   }
 
   padding-left: 15px !important;
@@ -164,7 +201,7 @@ table{
 
 .mat-row{
   &:nth-child(even){
-    background: #f6f6f6;
+    background: #fafafa;
   }
 }
 
@@ -176,7 +213,7 @@ table{
   padding: 25px 15px !important;
 
   &:not(:last-child){
-    border-right: 2px solid $themeColor2
+    border-right: 1px solid $themeColor2
   }
 }
 
@@ -187,4 +224,118 @@ table{
 
 th.cdk-column-select .mat-checkbox-frame{
   border-color: #fff !important;
+}
+
+// DIALOG
+
+.mat-dialog-title{
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.mat-dialog-actions{
+  padding-top: 25px !important;
+  padding-bottom: 25px !important;
+  &-align-end{
+    //padding-right: 15px !important;
+  }
+}
+
+.mat-form-field-appearance-outline {
+  .mat-form-field-prefix, .mat-form-field-suffix{
+    top: -1px !important;
+  }
+
+  .mat-form-field-suffix{
+    padding-left: 5px;
+  }
+
+  .mat-form-field-label{
+    top: 32px !important;
+  }
+}
+
+.radio-group-label{
+  padding-right: 15px;
+}
+
+.radio-button{
+  margin-right: 15px;
+}
+
+.clear-input-span{
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.mat-paginator{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+// TABLE COLUMNS
+
+
+td.mat-column-name {
+  vertical-align: central;
+  span {
+    margin-right: 5px;
+  }
+}
+
+.mat-column-select{
+  width: 60px;
+  text-align: center !important;
+}
+
+.mat-column-action{
+  width: 150px;
+  text-align: center !important;
+}
+
+.mat-column-createdAt{
+  width: 150px;
+  text-align: center !important;
+}
+
+.mat-sort-header{
+  &:not(.mat-column-name, .mat-column-plate, .mat-column-mark, .mat-column-model){
+    .mat-sort-header-container{
+      justify-content: center;
+    }
+  }
+}
+
+
+
+// PROGRESSBAR
+
+.mat-progress-bar-buffer{
+  background: #b0b0b0;
+}
+
+// TABS
+
+.mat-tab-label{
+  background: #fff;
+
+  height: 78px !important;
+  font-size: 16px !important;
+
+  &-active{
+    opacity: 1 !important;
+    font-weight: 700;
+  }
+}
+
+.mat-tab-body-content{
+  overflow-x: hidden !important;
+}
+
+@include rwd('maxMD'){
+  .radio-group-label{
+    display: block;
+    width: 100%;
+    padding-bottom: 15px;
+  }
 }

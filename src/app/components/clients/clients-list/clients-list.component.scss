@@ -1,0 +1,37 @@
+@import "src/assets/scss/mixins";
+
+.mat-column-type{
+  width: 70px;
+  text-align: center !important;
+
+}
+
+.mat-column-email{
+  width: 100px;
+  text-align: center !important;
+}
+
+@include rwd('maxXL'){
+  .mat-column-email, .mat-column-type{
+    display: none;
+  }
+}
+
+@include rwd('maxMD'){
+  .mat-column-phone{
+    display: none;
+  }
+}
+
+@include rwd('maxSM'){
+  .mat-column-action{
+    display: none;
+  }
+}
+
+@include rwd('max450'){
+  .mat-column-createdAt{
+    display: none;
+  }
+}
+

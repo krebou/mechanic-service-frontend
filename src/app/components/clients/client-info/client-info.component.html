@@ -1,0 +1,26 @@
+<div id="clients-list-view" class="template-padding">
+    <app-dashboard-header>
+        <button right mat-flat-button class="button-big" color="warn" (click)="deleteClient()">
+            Usuń klienta
+        </button>
+    </app-dashboard-header>
+
+    <div class="container-fluid" [style.padding]="0">
+        <div class="row"></div>
+
+        <mat-tab-group
+            [(selectedIndex)]="this.tabActive"
+            (selectedIndexChange)="changedTab($event)"
+        >
+            <mat-tab label="DANE" isActive>
+                <div #infoTab></div>
+            </mat-tab>
+            <mat-tab label="POJAZDY">
+                <div #vehiclesTab></div>
+            </mat-tab>
+            <mat-tab label="NAPRAWY">
+                <div #repairsTab></div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

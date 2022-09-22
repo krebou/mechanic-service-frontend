@@ -1,0 +1,9 @@
+<div id="cars-list-view" class="template-padding">
+    <app-dashboard-header [subtitle]="'Lącznie pojazdów w bazie: ' + tableResultsLength">
+        <button right mat-flat-button class="button-big" color="primary" (click)="addVehicle()">
+            Dodaj nowy pojazd
+        </button>
+    </app-dashboard-header>
+
+    <app-vehicles-table (tableChange)="loadData()" [vehicles]="data"></app-vehicles-table>
+</div>

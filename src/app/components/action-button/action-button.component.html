@@ -1,0 +1,20 @@
+<button class="button-icon" mat-flat-button color="accent" [matMenuTriggerFor]="menu">
+    <span>Akcje</span>
+    <feather-icon
+        [style.margin-left]="'5px'"
+        class="middle"
+        icon="chevron-down"
+        color="accent"
+        size="small"
+    ></feather-icon>
+</button>
+<mat-menu #menu="matMenu">
+    <button
+        mat-menu-item
+        color="warn"
+        *ngFor="let menu of menuList; let index"
+        (click)="makeAction(menu.action)"
+    >
+        {{ menu.button.toUpperCase() }}
+    </button>
+</mat-menu>

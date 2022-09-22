@@ -1,0 +1,51 @@
+@import "../../../assets/scss/variables";
+
+#dashboard-content{
+
+  min-height: 100vh;
+
+  background: $dashboardBackground;
+
+  padding-top: $dashboardTopbarHeight;
+
+  transition: 0.2s margin-left linear;
+
+  color:#fff;
+
+  &.active{
+    margin-left: $dashboardSidemenuWidth;
+  }
+}
+
+
+#dashboard-sidemenu-overlay{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  z-index: 5;
+
+  background: rgba(0,0,0, 0.25);
+
+  visibility: hidden;
+
+  &.active{
+    visibility: visible;
+  }
+}
+
+@media( max-width: 992px ){
+  #dashboard-content{
+    &.active{
+      margin-left: 0px;
+    }
+  }
+}
+
+.progress-bar{
+  position: fixed;
+  top:0px;
+  left: 0;
+
+  z-index: 9;
+}

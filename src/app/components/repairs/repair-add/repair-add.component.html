@@ -1,0 +1,35 @@
+<div id="repair-add" class="template-padding">
+    <app-dashboard-header>
+        <button right mat-flat-button class="button-big" color="primary" (click)="saveRepair()">
+            Dodaj naprawę
+        </button>
+    </app-dashboard-header>
+
+    <div class="container-fluid" [style.padding]="0">
+        <div class="row justify-content-end">
+            <div class="col-12 col-xl-7 col-xxl-8">
+                <app-repair-add-information
+                    (formChange)="formInformation = $event"
+                ></app-repair-add-information>
+            </div>
+            <div id="vehicle" class="col-12 col-xl-5 col-xxl-4">
+                <app-repair-add-select-vehicle
+                    (vehicleChange)="formVehicle = $event"
+                ></app-repair-add-select-vehicle>
+            </div>
+            <div id="cost" class="col-12">
+                <app-repair-add-costs (costsChange)="formCosts = $event"></app-repair-add-costs>
+            </div>
+            <div id="summary-costs" class="col-12 col-sm-10 col-lg-8 col-xl-7 col-xxl-5">
+                <app-repair-add-summary-costs
+                    [formCosts]="formCosts"
+                ></app-repair-add-summary-costs>
+            </div>
+        </div>
+        <div class="row justify-content-end no-gutters" [style.margin-top]="'30px'">
+            <button mat-flat-button class="button-big" color="primary" (click)="saveRepair()">
+                Dodaj naprawę
+            </button>
+        </div>
+    </div>
+</div>

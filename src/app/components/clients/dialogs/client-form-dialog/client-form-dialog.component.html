@@ -1,0 +1,138 @@
+<h2 mat-dialog-title>{{ action === 'add' ? 'Nowy klient' : 'Edytuj klienta' }}</h2>
+<mat-dialog-content>
+    <div class="row align-items-center" [formGroup]="form">
+        <!-- SELECT TYPE CLIENT -->
+        <div class="col-12" id="select-type-client">
+            <label class="radio-group-label" id="client-type-radio">Wybierz typ klienta:</label>
+            <mat-radio-group aria-labelledby="client-type-radio" formControlName="type">
+                <mat-radio-button class="radio-button" value="personal">
+                    indywidualny
+                </mat-radio-button>
+                <mat-radio-button class="radio-button" value="business">
+                    biznesowy
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <!-- INPUT NAME -->
+        <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>{{
+                    form.get('type')?.value === 'personal' ? 'Imię i nazwisko' : 'Nazwa firmy'
+                }}</mat-label>
+                <input
+                    matInput
+                    [placeholder]="
+                        form.get('type')?.value === 'personal' ? 'Jan Marciniak' : 'Kierowcy Sp.zoo'
+                    "
+                    formControlName="name"
+                />
+                <mat-error *ngIf="form.get('name')?.errors && form.get('name')?.dirty">
+                    {{ getFormError('name', form.get('name')) }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- INPUT TAXNUMBER  -->
+        <div class="col-12 col-md-6" *ngIf="form.get('type')?.value === 'business'">
+            <mat-form-field appearance="outline">
+                <mat-label>Number NIP</mat-label>
+                <input matInput placeholder="7632110347" formControlName="taxNumber" />
+                <mat-error *ngIf="form.get('taxNumber')?.errors && form.get('taxNumber')?.dirty">{{
+                    getFormError('taxNumber', form.get('taxNumber'))
+                }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- INPUT GENDER -->
+        <div
+            class="col-12 col-md-6"
+            id="gender-line"
+            *ngIf="form.get('type')?.value === 'personal'"
+        >
+            <label class="radio-group-label" id="gender-type-radio">Płeć:</label>
+            <mat-radio-group aria-labelledby="gender-type-radio" formControlName="gender">
+                <mat-radio-button class="radio-button" value="male">
+                    {{ 'male' | gender }}
+                </mat-radio-button>
+                <mat-radio-button class="radio-button" value="female">
+                    {{ 'female' | gender }}
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <!-- INPUT PHONE -->
+        <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>Telefon</mat-label>
+                <input matInput placeholder="723-504-867" formControlName="phone" />
+                <mat-error *ngIf="form.get('phone')?.errors && form.get('phone')?.dirty">
+                    {{ getFormError('phone', form.get('phone')) }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- INPUT EMAIL -->
+        <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>E-mail</mat-label>
+                <input matInput placeholder="adres@klienta.pl" formControlName="email" />
+                <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.dirty">
+                    {{ getFormError('email', form.get('email')) }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- INPUT STREET -->
+        <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>Ulica</mat-label>
+                <input matInput placeholder="Dworcowa 2a" formControlName="street" />
+                <mat-error *ngIf="form.get('street')?.errors && form.get('street')?.dirty">
+                    {{ getFormError('street', form.get('street')) }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- INPUT CITY -->
+        <div class="col-12 col-md-3">
+            <mat-form-field appearance="outline">
+                <mat-label>Miasto</mat-label>
+                <input matInput placeholder="Poznań" formControlName="city" />
+                <mat-error *ngIf="form.get('city')?.errors && form.get('city')?.dirty">
+                    {{ getFormError('city', form.get('city')) }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- INPUT ZIPCODE -->
+        <div class="col-12 col-md-3">
+            <mat-form-field appearance="outline">
+                <mat-label>Kod pocztowy</mat-label>
+                <input matInput placeholder="62-400" formControlName="zipCode" />
+                <mat-error *ngIf="form.get('zipCode')?.errors && form.get('zipCode')?.dirty">
+                    {{ getFormError('zipCode', form.get('zipCode')) }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close="cancel">Anuluj</button>
+    <!-- The mat-dialogs-close directive optionally accepts a value as a result for the dialogs. -->
+    <button
+        mat-button
+        mat-flat-button
+        color="primary"
+        class="button-big"
+        [disabled]="form.invalid || isSaving || !form.dirty"
+        (click)="saveClient()"
+    >
+        <span *ngIf="!isSaving">{{ action === 'add' ? 'Dodaj klienta' : 'Edytuj klienta' }}</span>
+        <mat-progress-spinner
+            *ngIf="isSaving"
+            mode="indeterminate"
+            diameter="25"
+        ></mat-progress-spinner>
+    </button>
+</mat-dialog-actions>

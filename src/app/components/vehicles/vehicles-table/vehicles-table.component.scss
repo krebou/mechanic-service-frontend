@@ -1,0 +1,44 @@
+@import "src/assets/scss/variables";
+@import "src/assets/scss/mixins";
+
+.mat-column-year{
+  width: 90px;
+  text-align: center;
+}
+.mat-column-engine{
+  width: 180px;
+}
+
+.mat-column-plate{
+  width: 200px;
+}
+
+
+@include rwd('max1600'){
+  .mat-column-engine{
+    display: none;
+  }
+}
+
+@include rwd('maxXL'){
+  .mat-column-model, .mat-column-mark{
+    display: none;
+  }
+}
+
+
+
+
+@include rwd('maxSM'){
+  .mat-column-action, .mat-column-year{
+    display: none;
+  }
+}
+
+
+@include rwd('max450'){
+  .mat-column-createdAt{
+    display: none;
+  }
+}
+

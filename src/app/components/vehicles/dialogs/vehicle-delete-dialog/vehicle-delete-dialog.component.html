@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Na pewno chcesz usunąć ten pojazd?</h2>
+<mat-dialog-content>
+    <strong [style.margin]="0">
+        [{{ dialogData.plate }}] {{ dialogData.mark }} {{ dialogData.model }}
+    </strong>
+    <p>Rok produkcji: {{ dialogData.year }}</p>
+    <p>Rejestracja: {{ dialogData.plate }}</p>
+    <p>VIN: {{ dialogData.vin }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <!-- The mat-dialogs-close directive optionally accepts a value as a result for the dialogs. -->
+    <button mat-flat-button mat-dialog-close="">Anuluj</button>
+    <button mat-flat-button color="warn" class="button-big" (click)="deleteCar()">
+        Usuń pojazd
+    </button>
+</mat-dialog-actions>

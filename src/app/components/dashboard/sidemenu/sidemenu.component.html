@@ -1,0 +1,38 @@
+<div id="dashboard-sidebar" class="active" [ngClass]="{ active: show }">
+    <div id="sidebar-top">
+        <span>WerkstattCRM</span>
+        <feather-icon
+            class="toogleMenu d-lg-none"
+            icon="x"
+            color="white"
+            size="big"
+            (click)="closeMenu()"
+        ></feather-icon>
+    </div>
+    <div id="sidebar-menu">
+        <div class="sidebar-menu-item" *ngFor="let object of items">
+            <div class="sidebar-menu-name">{{ object.name }}</div>
+            <div *ngIf="object.description" class="sidebar-menu-desc">{{ object.description }}</div>
+            <ul class="sidebar-menu-children">
+                <li *ngFor="let menu of object.children">
+                    <a
+                        [routerLink]="menu.router"
+                        routerLinkActive="active"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        (click)="linkClick()"
+                    >
+                        <span class="icon">
+                            <feather-icon
+                                [icon]="menu.icon"
+                                size="small"
+                                color="white"
+                            ></feather-icon>
+                        </span>
+                        <span class="name">{{ menu.name }}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="sidebar-version">version 0.0.0</div>
+</div>

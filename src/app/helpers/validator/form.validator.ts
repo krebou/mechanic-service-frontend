@@ -1,55 +1,125 @@
-import {AbstractControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
-import {Injectable} from "@angular/core";
-
+import {
+    AbstractControl,
+    FormGroup,
+    ValidationErrors,
+    ValidatorFn,
+    Validators,
+} from '@angular/forms';
+import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class FormValidator {
-
-  platePattern = Validators.pattern(new RegExp(/^[\p{L}\p{N}]*$/iu));
-
-  namePattern = Validators.pattern(new RegExp(/^[- \p{L}\p{N}]*$/iu));
-
-  vinPattern = Validators.pattern(new RegExp(/^[0-9wertyupasdfghjklzxxcvbnmWERTYUPASDFGHJKLZXCVBNM]{17}$/iu));
-
-  phonePattern = Validators.pattern(new RegExp(/^[0-9 ()+\-\p{N}]*$/iu));
-
-  genderPattern = Validators.pattern(new RegExp(/^(GENDER_FEMALE|GENDER_MALE|GENDER_DIVERS)$/i));
-
-  birthdayPattern = Validators.pattern(new RegExp(/^[0-9]{2}-[0-9]{2}-[0-9]{4}$/i));
-
-  emailValidator = (): ValidatorFn => {
-    const nameRe = new RegExp('^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$', 'i')
-    return (control: AbstractControl): ValidationErrors | null => {
-      const forbidden = nameRe.test(control.value);
-      return forbidden ? null: {email: true };
+    vehice = {
+        typePattern: Validators.pattern(new RegExp(/^(CAR|TRUCK|MOTORCYCLE|OTHER)$/iu)),
+        platePattern: Validators.pattern(new RegExp(/^[- \p{L}\p{N}]*$/iu)),
+        engineTypePattern: Validators.pattern(
+            new RegExp(/^(DIESEL|PETROL|PETROL_LPG|PETROL_CNG|HYBRID|HYDROGEN|ELECTRIC|ETANOL)$/iu)
+        ),
     };
-  }
 
-  mustMatch(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
-      const control = formGroup.controls[controlName];
-      const matchingControl = formGroup.controls[matchingControlName];
+    mongoId = Validators.pattern(new RegExp(/^[a-fA-F0-9]{24}$/));
 
-      if (matchingControl.errors && !matchingControl.hasError('mustMatch')) {
-        // return if another validator has already found an error on the matchingControl
-        return;
-      }
+    namePattern = Validators.pattern(new RegExp(/^[-.,:=/\\() \p{L}\p{N}]*$/iu));
 
-      // set error on matchingControl if validation fails
-      if (control.value !== matchingControl.value) {
-        matchingControl.setErrors({ mustMatch: true });
-      } else {
-        matchingControl.setErrors(null);
-      }
+    numberPattern = Validators.pattern(new RegExp(/^[0-9]*$/iu));
+
+    floatPattern = Validators.pattern(new RegExp(/^[0-9.,]*$/iu));
+
+    vinPattern = Validators.pattern(
+        new RegExp(/^[0-9wertyupasdfghjklzxxcvbnmWERTYUPASDFGHJKLZXCVBNM]{17}$/iu)
+    );
+    addressPattern = Validators.pattern(new RegExp(/^[-., /\\() \p{L}\p{N}]*$/iu));
+    zipCodePattern = Validators.pattern(new RegExp(/^[0-9- a-zA-Z]*$/iu));
+    clientTypePattern = Validators.pattern(new RegExp(/^(personal|business)$/i));
+
+    phonePattern = Validators.pattern(new RegExp(/^[0-9 ()+\-\p{N}]*$/iu));
+
+    genderPattern = Validators.pattern(new RegExp(/^(male|female|divers)$/i));
+
+    birthdayPattern = Validators.pattern(new RegExp(/^[0-9]{2}-[0-9]{2}-[0-9]{4}$/i));
+
+    jwt = new RegExp(/^([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_=]+)\.([a-zA-Z0-9_\-+/=]*)/);
+
+    emailValidator = (): ValidatorFn => {
+        const nameRe = new RegExp(
+            '^(([^<>()\\[\\]\\\\.,;:\\s@"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@"]+)*)|(".+"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$',
+            'i'
+        );
+        return (control: AbstractControl): ValidationErrors | null => {
+            if (control.value.length > 0) {
+                const forbidden = nameRe.test(control.value);
+                return forbidden ? null : { email: true };
+            }
+
+            return null;
+        };
+    };
+
+    mustMatch(controlName: string, matchingControlName: string) {
+        return (formGroup: FormGroup) => {
+            const control = formGroup.controls[controlName];
+            const matchingControl = formGroup.controls[matchingControlName];
+
+            if (matchingControl.errors && !matchingControl.hasError('mustMatch')) {
+                // return if another validator has already found an error on the matchingControl
+                return;
+            }
+
+            // set error on matchingControl if validation fails
+            if (control.value !== matchingControl.value) {
+                matchingControl.setErrors({ mustMatch: true });
+            } else {
+                matchingControl.setErrors(null);
+            }
+        };
     }
-  }
 
+    getFormError(
+        name: string,
+        control:
+            | AbstractControl<string>
+            | AbstractControl<number>
+            | AbstractControl<string | null>
+            | AbstractControl<number | null>
+            | null
+    ): string {
+        // console.log(control);
+        if (control?.hasError('email')) return 'Niepoprawny adres E-mail';
+        // PLATE ERRORS
+        if (control?.hasError('pattern') && name === 'plate') return 'Niedozwolone znaki';
 
-  // getErrorMessage( control: AbstractControl ): string {
-  //   if(control.hasError('required'))
-  // }
+        if (control?.hasError('pattern') && name === 'floatPattern')
+            return 'Dozwolone tylko liczby dziesiętne np. 1.6';
 
+        if (control?.hasError('pattern') && name === 'numberPattern')
+            return 'Dozwolone tylko liczby całkowite.';
 
+        // CAR YEAR ERRORS
+        if (control?.hasError('max') && name === 'year')
+            return `Produkcja nie może być nowsza niż ${control.errors?.['max'].max} `;
+        if (control?.hasError('min') && name === 'year')
+            return `Najstarsze auto pochodzi z roku: ${control.errors?.['min'].min} `;
+
+        // VIN ERRORS
+        if (control?.hasError('pattern') && name === 'vin')
+            return 'VIN: składa się z 17 znaków, cyfr i liter z wyłączeniem liter I, O oraz Q';
+
+        // DEFAULT ERRORS
+        if (control?.hasError('required')) return 'Pole wymagane';
+
+        if (control?.hasError('max'))
+            return `Liczba nie może być większa niż ${control.errors?.['max'].max} `;
+        if (control?.hasError('min'))
+            return `Liczba nie może być mniejsza niż: ${control.errors?.['min'].min} `;
+
+        if (control?.hasError('pattern')) return 'Niedozwolone znaki';
+
+        return 'Błąd';
+    }
+
+    // getErrorMessage( control: AbstractControl ): string {
+    //   if(control.hasError('required'))
+    // }
 }

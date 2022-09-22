@@ -1,0 +1,39 @@
+<div class="box-info" [formGroup]="form">
+    <h4>Informacja</h4>
+    <div class="row">
+        <!--  SELECT TYPE-->
+        <div class="col-12 col-lg-4 col-xl-6 col-xxl-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Typ</mat-label>
+                <mat-select formControlName="type">
+                    <mat-option [value]="type" *ngFor="let type of repairTypes">{{
+                        type | repairTypes
+                    }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <!--  STATUS SELECT-->
+        <div class="col-12 col-lg-4 col-xl-6 col-xxl-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option [value]="status" *ngFor="let status of repairStatus">{{
+                        status | repairStatus
+                    }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <!--  MILEAGE INPUT-->
+        <div class="col-12 col-lg-4 col-xl-12 col-xxl-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Stan licznika</mat-label>
+                <input matInput placeholder="Wymiana koła" formControlName="mileage" />
+                <mat-error *ngIf="form.get('mileage')?.errors && form.get('mileage')?.touched">{{
+                    getFormError('numberPattern', form.get('mileage'))
+                }}</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+</div>

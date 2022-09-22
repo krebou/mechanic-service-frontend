@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Usuń wybrane</h2>
+<mat-dialog-content>
+    <strong [style.margin]="0">Liczba klientów do usunięcia: {{ count }} </strong>
+    <p>
+        Usunięcie klienta spowoduje również usunięcie wszystkich pojazdów oraz napraw związanych z
+        tym klientem.
+    </p>
+    <p><strong>Czy napewno chcesz wykonać tą akcję?</strong></p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <!-- The mat-dialogs-close directive optionally accepts a value as a result for the dialogs. -->
+    <button mat-flat-button mat-dialog-close="">Anuluj</button>
+    <button mat-flat-button color="warn" class="button-big" (click)="makeAction()">
+        Wykonaj akcje
+    </button>
+</mat-dialog-actions>

@@ -1,0 +1,52 @@
+<div class="box-info">
+    <h4>Pojazd</h4>
+    <mat-form-field appearance="outline" *ngIf="!selectedVehicle">
+        <input
+            type="text"
+            placeholder="Szukaj: Rejestracja lub VIN"
+            aria-label="Client"
+            matInput
+            [formControl]="searchVehicle"
+            [matAutocomplete]="auto"
+        />
+        <span
+            class="clear-input-span"
+            *ngIf="searchVehicle.value"
+            matSuffix
+            (click)="searchVehicle.setValue('')"
+            >&Cross;</span
+        >
+        <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="vehicleSelected($event)"
+            [displayWith]="displayAutocomplete"
+        >
+            <mat-option *ngFor="let vehicle of listVehicles" [value]="vehicle">
+                {{ vehicle.plate }}
+            </mat-option>
+        </mat-autocomplete>
+        <mat-hint>Wpisz rejestrację a następnie wybierz pojazd z listy</mat-hint>
+    </mat-form-field>
+    <div *ngIf="selectedVehicle" class="col-12">
+        <div class="row no-gutters align-items-center" id="selected-client">
+            <div class="col">
+                <div class="selected-client-line">
+                    <p>Wybrany pojazd:</p>
+                    <strong>Rejestracja: </strong>
+                    <span>{{ selectedVehicle.plate }}</span>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button
+                    mat-flat-button
+                    class="button-normal"
+                    color="accent"
+                    [style.font-size]="'30px'"
+                    (click)="removeSelectedVehicle()"
+                >
+                    &Cross;
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

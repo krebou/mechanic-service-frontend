@@ -1,10 +1,14 @@
 export interface Client {
-  id: number;
-  firstname: string;
-  lastname: string;
-  address: string;
-  city: string;
-  city_code: string;
-  email?: string;
-  phone: number;
+    id?: string;
+    name: string;
+    type: string;
+    taxNumber?: string;
+    phone: string;
+    email: string;
+    gender?: string;
+    street: string;
+    city: string;
+    zipCode: string;
+    createdAt?: number;
+    updatedAt?: number;
 }

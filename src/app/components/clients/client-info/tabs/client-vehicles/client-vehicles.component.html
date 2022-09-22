@@ -1,0 +1,9 @@
+<div id="vehicle-list" [hidden]="!vehicles && isLoadingVehlices">
+    <app-vehicles-table
+        (tableChange)="loadVehicleData()"
+        [vehicles]="vehicles"
+    ></app-vehicles-table>
+</div>
+<div *ngIf="isLoadingVehlices">
+    <mat-progress-spinner color="primary" mode="indeterminate" diameter="64"></mat-progress-spinner>
+</div>

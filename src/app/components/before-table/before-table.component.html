@@ -1,0 +1,26 @@
+<div class="col-12 before-table">
+    <div class="row align-items-center">
+        <div class="col-auto">
+            <mat-form-field appearance="outline" class="mat-form-field-make-all">
+                <mat-label>{{ placeholder }}</mat-label>
+                <mat-select [(value)]="selectedAction">
+                    <mat-option [value]="action.action" *ngFor="let action of actions">
+                        {{ action.button }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="col-auto">
+            <button
+                mat-raised-button
+                color="primary"
+                class="button-normal"
+                (click)="onSelectedAction()"
+                [disabled]="count === 0 || selectedAction === ''"
+            >
+                {{ button }}
+            </button>
+        </div>
+    </div>
+</div>

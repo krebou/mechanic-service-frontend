@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Usuń naprawę</h2>
+<mat-dialog-content>
+    <strong [style.margin]="0">{{ dialogData.name }}</strong>
+    <p><strong>Czy napewno chcesz usunąć tą naprawę?</strong></p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <!-- The mat-dialogs-close directive optionally accepts a value as a result for the dialogs. -->
+    <button mat-flat-button mat-dialog-close="">Anuluj</button>
+    <button mat-flat-button color="warn" class="button-big" (click)="deleteRepair()">
+        Usuń naprawę
+    </button>
+</mat-dialog-actions>

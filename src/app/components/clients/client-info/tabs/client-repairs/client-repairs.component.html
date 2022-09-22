@@ -1,0 +1,6 @@
+<div id="repairs-list" [hidden]="!repairs && isLoadingRepairs">
+    <app-repairs-table [repairs]="repairs" (tableChange)="loadRepairsData()"></app-repairs-table>
+</div>
+<div class="loadSpinner" *ngIf="isLoadingRepairs">
+    <mat-progress-spinner color="primary" mode="indeterminate" diameter="64"></mat-progress-spinner>
+</div>

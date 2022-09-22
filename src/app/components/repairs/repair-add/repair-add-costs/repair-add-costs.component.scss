@@ -1,0 +1,44 @@
+@import "src/assets/scss/variables";
+@import "src/assets/scss/mixins";
+
+.add-new-part-button-line{
+  padding-top: 25px;
+  text-align: right;
+}
+
+.costs-row{
+  padding-left: 15px;
+  padding-right: 15px;
+
+  padding-top: 25px;
+  padding-bottom: 5px;
+
+  border-bottom: 1px solid $themeColor2;
+
+
+  &:nth-child(even){
+    background:#fafafa;
+  }
+
+
+}
+
+#button-delete-line{
+  padding-top: 5px;
+}
+
+@include rwd('maxXL'){
+  .costs-row{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .add-new-part-button-line{
+    text-align: right;
+  }
+
+  #button-delete-line{
+    text-align: right;
+    padding-bottom: 15px;
+  }
+}
