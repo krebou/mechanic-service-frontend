@@ -1,0 +1,50 @@
+<div id="login-page">
+    <div id="login-page-left">a</div>
+    <div id="login-page-right">
+        <h1>Logowanie</h1>
+        <!-- ERROR-->
+        <div *ngIf="authError$ | async" class="auth-error">Dane są niepoprawne.</div>
+        <form
+            [formGroup]="form"
+            class="container-fluid"
+            style="padding: 0px; margin-top: 25px"
+            (ngSubmit)="getAuth()"
+        >
+            <div class="row justify-content-end">
+                <div class="col-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="" formControlName="email" />
+                        <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.touched">
+                            {{ getFormError('email', form.get('email')) }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-12">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Hasło</mat-label>
+                        <input matInput placeholder="" type="password" formControlName="password" />
+                        <mat-error
+                            *ngIf="form.get('password')?.errors && form.get('password')?.touched"
+                        >
+                            {{ getFormError('password', form.get('password')) }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-auto">
+                    <button mat-flat-button color="primary" class="button-big">
+                        <span *ngIf="(inProccess$ | async) === false">Zaloguj się</span>
+                        <mat-progress-spinner
+                            *ngIf="inProccess$ | async"
+                            mode="indeterminate"
+                            diameter="25"
+                            color="accent"
+                        ></mat-progress-spinner>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

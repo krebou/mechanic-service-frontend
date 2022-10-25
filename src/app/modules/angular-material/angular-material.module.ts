@@ -66,6 +66,7 @@ export class MatButtonModule {}
         MatSelectModule,
         MatRadioModule,
         MatCheckboxModule,
+        MatRippleModule,
     ],
     exports: [
         MatFormFieldModule,
@@ -73,6 +74,7 @@ export class MatButtonModule {}
         MatSelectModule,
         MatRadioModule,
         MatCheckboxModule,
+        MatRippleModule,
     ],
     providers: [
         {

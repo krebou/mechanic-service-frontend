@@ -1,0 +1,65 @@
+<div id="repair-add" class="template-padding">
+    <app-page-header [headerNavi]="headerNavi">
+        <button
+            right
+            mat-flat-button
+            class="button-big"
+            color="primary"
+            (click)="onSaveRepair()"
+            [disabled]="isSaving"
+        >
+            <span *ngIf="!isSaving">{{ buttonText }} </span>
+            <mat-progress-spinner
+                *ngIf="isSaving"
+                mode="indeterminate"
+                diameter="25"
+                color="accent"
+            ></mat-progress-spinner>
+        </button>
+    </app-page-header>
+
+    <div class="container-fluid" [style.padding]="0">
+        <div class="row justify-content-end">
+            <div class="col-12 col-xl-7 col-xxl-8">
+                <app-repair-information-ui
+                    (formInformation)="formInformation = $event"
+                    [information]="information"
+                ></app-repair-information-ui>
+            </div>
+            <div id="vehicle" class="col-12 col-xl-5 col-xxl-4">
+                <app-repair-select-vehicle
+                    (vehicleChange)="formVehicle = $event"
+                    [vehicle]="vehicle"
+                ></app-repair-select-vehicle>
+            </div>
+            <div id="cost" class="col-12">
+                <app-repair-costs-ui
+                    (formCosts)="formCosts = $event"
+                    [partsList]="partsList"
+                ></app-repair-costs-ui>
+            </div>
+            <div id="summary-costs" class="col-12 col-sm-10 col-lg-8 col-xl-7 col-xxl-5">
+                <app-repair-summary-costs-ui
+                    [formCosts]="formCosts.getRawValue().parts"
+                ></app-repair-summary-costs-ui>
+            </div>
+        </div>
+        <div class="row justify-content-end no-gutters" [style.margin-top]="'30px'">
+            <button
+                mat-flat-button
+                class="button-big"
+                color="primary"
+                (click)="onSaveRepair()"
+                [disabled]="isSaving"
+            >
+                <span *ngIf="!isSaving">{{ buttonText }} </span>
+                <mat-progress-spinner
+                    *ngIf="isSaving"
+                    mode="indeterminate"
+                    diameter="25"
+                    color="accent"
+                ></mat-progress-spinner>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { RepairInformationComponent } from './repair-information.component';
+
+describe('RepairInformationComponent', () => {
+  let component: RepairInformationComponent;
+  let fixture: ComponentFixture<RepairInformationComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ RepairInformationComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(RepairInformationComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

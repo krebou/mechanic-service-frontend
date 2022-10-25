@@ -3,6 +3,8 @@ import { Subject } from 'rxjs';
 import { SelectionModel } from '@angular/cdk/collections';
 
 export class Table<T extends { id?: string }> {
+    /***************  GETTERS / SETTERS / INPUTES / OUTPUTES ETC.  ***************/
+
     data!: T[];
 
     /** Table Settings **/
@@ -40,7 +42,11 @@ export class Table<T extends { id?: string }> {
     selection = new SelectionModel<string>(true, []);
     selectedAll = false;
 
+    /***************  CONSTRUCTOR  ***************/
+
     constructor(private matPaginatorDefaultOptions: MatPaginatorDefaultOptions) {}
+
+    /***************  METHODS   ***************/
 
     /** TABLE SELECT CHECKBOX **/
 
@@ -54,8 +60,7 @@ export class Table<T extends { id?: string }> {
 
             this.selectedAll = true;
         } else {
-            this.selection.clear();
-            this.selectedAll = false;
+            this.clearSelected();
         }
     }
 

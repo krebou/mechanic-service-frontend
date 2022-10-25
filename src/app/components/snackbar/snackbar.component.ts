@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Subscriptions } from '../../extends/subscriptions';
 
 @Component({
     selector: 'app-snackbar',
@@ -21,15 +22,21 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
         ]),
     ],
 })
-export class SnackbarComponent {
+export class SnackbarComponent extends Subscriptions {
+    /***************  GETTERS / SETTERS / INPUTES / OUTPUTES ETC.  ***************/
+
     snackbar$: Observable<{ active: boolean; message: string }>;
     isActive: boolean = false;
     color: string = 'success';
 
+    /***************  CONSTRUCTOR  ***************/
+
     constructor(private store: Store<{ snackbar: any }>) {
+        super();
+
         this.snackbar$ = store.select('snackbar');
 
-        store.subscribe(({ snackbar }) => {
+        this.addSubscription = store.subscribe(({ snackbar }) => {
             this.isActive = snackbar.active;
             this.color = snackbar.color;
         });

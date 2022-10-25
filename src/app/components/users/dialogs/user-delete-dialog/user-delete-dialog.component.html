@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Usuń użytkownika</h2>
+<mat-dialog-content>
+    <strong [style.margin]="0">Czy na pewno chcesz usunąć tego użytkownika?</strong>
+    <p *ngIf="selfDelete" id="selfDelete">
+        Usuwasz sam siebie, jeżeli to zrobisz zostaniesz wylogowany z systemu!
+    </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <!-- The mat-dialogs-close directive optionally accepts a value as a result for the dialogs. -->
+    <button mat-flat-button mat-dialog-close="">Anuluj</button>
+    <button mat-flat-button color="warn" class="button-big" (click)="deleteUser()">
+        Usuń użytkownika
+    </button>
+</mat-dialog-actions>

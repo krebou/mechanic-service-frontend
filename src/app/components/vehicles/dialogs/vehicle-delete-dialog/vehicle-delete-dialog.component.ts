@@ -1,22 +1,25 @@
 import { Component, Inject } from '@angular/core';
 import { Vehicle } from '../../../../interface/vehicle.interface';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { VehiclesService } from '../../vehicles.service';
+import { VehiclesService } from '../../../../services/vehicles.service';
 import { Store } from '@ngrx/store';
-import { setSuccessSnackbar } from '../../../snackbar/store/snackbar.actions';
+import { setSuccessSnackbar } from '../../../../store/snackbar/snackbar.actions';
 
 @Component({
     selector: 'app-vehicle-delete-dialogs',
     templateUrl: './vehicle-delete-dialog.component.html',
-    styleUrls: ['./vehicle-delete-dialog.component.scss'],
 })
 export class VehicleDeleteDialogComponent {
+    /***************  CONSTRUCTOR  ***************/
+
     constructor(
         private vehiclesService: VehiclesService,
         @Inject(MAT_DIALOG_DATA) public dialogData: Vehicle,
         private store: Store,
         private dialogRef: MatDialogRef<VehicleDeleteDialogComponent>
     ) {}
+
+    /***************  METHODS   ***************/
 
     deleteCar(): void {
         if (this.dialogData.id) {

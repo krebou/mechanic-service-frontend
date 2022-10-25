@@ -1,18 +1,21 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { catchError, forkJoin, map, of } from 'rxjs';
 import { ClientsService } from '../../../../services/clients.service';
 import { Store } from '@ngrx/store';
-import { setSnackbar } from '../../../snackbar/store/snackbar.actions';
+import { setSnackbar } from '../../../../store/snackbar/snackbar.actions';
 
 @Component({
     selector: 'app-clients-select-action-dialogs',
     templateUrl: './clients-select-action-dialog.component.html',
-    styleUrls: ['./clients-select-action-dialog.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientsSelectActionDialogComponent {
+    /***************  GETTERS / SETTERS / INPUTES / OUTPUTES ETC.  ***************/
+
     count = this.dialogData.selected.length;
+
+    /***************  CONSTRUCTOR  ***************/
 
     constructor(
         @Inject(MAT_DIALOG_DATA) private dialogData: { action: string; selected: string[] },
@@ -20,6 +23,8 @@ export class ClientsSelectActionDialogComponent {
         private clientsService: ClientsService,
         private store: Store
     ) {}
+
+    /***************  METHODS   ***************/
 
     makeAction(): void {
         const selection = this.dialogData.selected.map((value) =>

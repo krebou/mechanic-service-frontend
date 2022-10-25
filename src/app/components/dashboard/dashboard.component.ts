@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { closeMenu } from './sidemenu/store/sidemenu.action';
-import { selectProgressBarShow } from '../dashboard-header/store/progress-bar.selector';
-import { ProgressBarState } from '../dashboard-header/store/progress-bar.reducer';
-import { delay, Observable } from 'rxjs';
+import { closeMenu } from '../../store/sidemenu/sidemenu.action';
+import { selectProgressBarShow } from '../../store/progress-bar/progress-bar.selector';
+import { ProgressBarState } from '../../store/progress-bar/progress-bar.reducer';
+import { delay } from 'rxjs';
 
 @Component({
     selector: 'app-dashboard',
@@ -11,8 +11,12 @@ import { delay, Observable } from 'rxjs';
     styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
+    /***************  GETTERS / SETTERS / INPUTES / OUTPUTES ETC.  ***************/
+
     sidemenu$ = this.store.select('sidemenu');
     progressbar$ = this.store.select(selectProgressBarShow).pipe(delay(0));
+
+    /***************  CONSTRUCTOR  ***************/
 
     constructor(
         private store: Store<{
@@ -20,6 +24,8 @@ export class DashboardComponent {
             progressbar: ProgressBarState;
         }>
     ) {}
+
+    /***************  METHODS   ***************/
 
     closeMenu(): void {
         this.store.dispatch(closeMenu());

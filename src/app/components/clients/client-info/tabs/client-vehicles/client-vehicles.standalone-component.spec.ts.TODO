@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { ClientVehiclesStandaloneComponent } from './client-vehicles.standalone-component';
+
+describe('ClientVehiclesComponent', () => {
+    let component: ClientVehiclesStandaloneComponent;
+    let fixture: ComponentFixture<ClientVehiclesStandaloneComponent>;
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [ClientVehiclesStandaloneComponent],
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(ClientVehiclesStandaloneComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+});

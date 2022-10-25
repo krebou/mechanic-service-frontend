@@ -1,0 +1,139 @@
+<h2 mat-dialog-title>{{ action === 'add' ? 'Dodaj nowego użytkownika' : 'Edytuj użytkownika' }}</h2>
+<mat-dialog-content>
+    <div class="row" [formGroup]="form">
+        <div class="col-12">
+            <p id="user-exist" *ngIf="isUserExist">
+                E-mail znajduję się już w naszej bazie danych.
+            </p>
+        </div>
+
+        <div class="col-12 info-change" *ngIf="action === 'edit'">
+            Zapisanie zmian spowoduje wylogowanie się tego użytkownika z systemu.
+        </div>
+
+        <!-- SELECT ROLE  -->
+        <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>Typ</mat-label>
+                <mat-select formControlName="role">
+                    <mat-option value="admin">{{ 'admin' | userRole }}</mat-option>
+                    <mat-option value="mechanic">{{ 'mechanic' | userRole }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <!-- SELECT STATUS  -->
+        <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option value="active">{{ 'active' | userStatus }}</mat-option>
+                    <mat-option value="pending">{{ 'pending' | userStatus }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <!-- INPUT FIRSTNAME -->
+        <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>Imię</mat-label>
+                <input matInput placeholder="Janusz" formControlName="firstname" />
+                <mat-error
+                    *ngIf="form.get('firstname')?.errors && form.get('firstname')?.touched"
+                    >{{ getFormError('name', form.get('firstname')) }}</mat-error
+                >
+            </mat-form-field>
+        </div>
+
+        <!-- INPUT LASTNAME -->
+        <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>Nazwisko</mat-label>
+                <input matInput placeholder="Golop" formControlName="lastname" />
+                <mat-error *ngIf="form.get('lastname')?.errors && form.get('lastname')?.touched">{{
+                    getFormError('name', form.get('lastname'))
+                }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- INPUT Email -->
+        <div class="col-12">
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="email@email.to" formControlName="email" />
+                <mat-error *ngIf="form.get('email')?.errors && form.get('email')?.touched">{{
+                    getFormError('email', form.get('email'))
+                }}</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h6 [style.margin]="'25px 0px'">
+                <span [style.margin]="'0px 15px 0px 0px'">{{
+                    action === 'add' ? 'Hasło' : 'Zmienić hasło?'
+                }}</span>
+                <mat-checkbox
+                    [(ngModel)]="changePassword"
+                    color="primary"
+                    *ngIf="action === 'edit'"
+                ></mat-checkbox>
+            </h6>
+        </div>
+    </div>
+    <!--    PASSWORD FORM   -->
+    <div class="row" [formGroup]="passwordForm" *ngIf="changePassword">
+        <!-- INPUT Password -->
+        <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>Hasło</mat-label>
+                <input matInput type="password" formControlName="password" />
+                <mat-error
+                    *ngIf="
+                        passwordForm.get('password')?.errors &&
+                        passwordForm.get('password')?.touched
+                    "
+                    >{{ getFormError('password', passwordForm.get('password')) }}</mat-error
+                >
+            </mat-form-field>
+        </div>
+
+        <!-- INPUT Password_repeat -->
+        <div class="col-12 col-md-6">
+            <mat-form-field appearance="outline">
+                <mat-label>Powtórz hasło</mat-label>
+                <input matInput type="password" formControlName="password_repeat" />
+                <mat-error
+                    *ngIf="
+                        passwordForm.get('password_repeat')?.errors &&
+                        passwordForm.get('password_repeat')?.touched
+                    "
+                    >{{ getFormError('password', passwordForm.get('password_repeat')) }}</mat-error
+                >
+            </mat-form-field>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close="cancel">Anuluj</button>
+    <!-- The mat-dialogs-close directive optionally accepts a value as a result for the dialogs. -->
+    <button
+        mat-button
+        mat-flat-button
+        color="primary"
+        class="button-big"
+        [disabled]="form.invalid || (changePassword && passwordForm.invalid)"
+        (click)="saveUser()"
+    >
+        <span *ngIf="!isSaving">{{
+            action === 'add' ? 'Dodaj użytkownika' : 'Edytuj użytkownika'
+        }}</span>
+        <mat-progress-spinner
+            *ngIf="isSaving"
+            mode="indeterminate"
+            diameter="25"
+            color="accent"
+        ></mat-progress-spinner>
+    </button>
+</mat-dialog-actions>

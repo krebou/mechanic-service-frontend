@@ -1,16 +1,17 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Client } from '../../../../interface/client';
+import { Client } from '../../../../interface/client.interface';
 import { Store } from '@ngrx/store';
 import { RepairsService } from '../../../../services/repairs.service';
-import { setSuccessSnackbar, setWarnSnackbar } from '../../../snackbar/store/snackbar.actions';
+import { setSuccessSnackbar, setWarnSnackbar } from '../../../../store/snackbar/snackbar.actions';
 
 @Component({
     selector: 'app-repair-delete',
     templateUrl: './repair-delete.component.html',
-    styleUrls: ['./repair-delete.component.scss'],
 })
 export class RepairDeleteComponent {
+    /***************  CONSTRUCTOR  ***************/
+
     constructor(
         private repairsService: RepairsService,
         private dialog: MatDialog,
@@ -18,6 +19,8 @@ export class RepairDeleteComponent {
         private store: Store,
         private dialogRef: MatDialogRef<RepairDeleteComponent>
     ) {}
+
+    /***************  METHODS   ***************/
 
     deleteRepair(): void {
         if (this.dialogData.id) {

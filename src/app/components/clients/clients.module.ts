@@ -10,18 +10,19 @@ import {
     MatTablePacksetModule,
     MatTabsModule,
 } from '../../modules/angular-material/angular-material.module';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ClientFormDialogComponent } from './dialogs/client-form-dialog/client-form-dialog.component';
 import { ClientDeleteDialogComponent } from './dialogs/client-delete-dialog/client-delete-dialog.component';
-import { ActionButtonComponent } from '../action-button/action-button.component';
+import { ActionButtonStandaloneComponent } from '../action-button/action-button.standalone-component';
 import { ClientInfoComponent } from './client-info/client-info.component';
-import { BeforeTableComponent } from '../before-table/before-table.component';
+import { BeforeTableStandaloneComponent } from '../before-table/before-table.standalone-component';
 import { ClientsSelectActionDialogComponent } from './dialogs/clients-select-action-dialog/clients-select-action-dialog.component';
-import { HttpLoadingStatusInterceptor } from '../../interceptor/http-loading-status/http-loading-status.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from '../../pipes/pipes.module';
-import { FeatherIconComponent } from '../feather-icon/feather-icon.component';
-import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.component';
+import { FeatherIconStandaloneComponent } from '../feather-icon/feather-icon.standalone-component';
+import { PageHeaderStandaloneComponent } from '../page-header/page-header.standalone-component';
+import { HttpInterceptorsModule } from '../../modules/http-interceptors/http-interceptors.module';
+import { ClientsTableStandaloneComponent } from './clients-table/clients-table.standalone-component';
 
 @NgModule({
     declarations: [
@@ -35,25 +36,20 @@ import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.c
         CommonModule,
         ClientsRoutingModule,
         HttpClientModule,
+        HttpInterceptorsModule,
         ReactiveFormsModule,
-        ActionButtonComponent,
-        BeforeTableComponent,
+        ActionButtonStandaloneComponent,
+        BeforeTableStandaloneComponent,
         PipesModule,
-        FeatherIconComponent,
-        DashboardHeaderComponent,
+        FeatherIconStandaloneComponent,
+        PageHeaderStandaloneComponent,
         MatTablePacksetModule,
         MatFormModule,
         MatDialogModule,
         MatButtonModule,
         MatProgressSpinnerModule,
         MatTabsModule,
-    ],
-    providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useExisting: HttpLoadingStatusInterceptor,
-            multi: true,
-        },
+        ClientsTableStandaloneComponent,
     ],
 })
 export class ClientsModule {}

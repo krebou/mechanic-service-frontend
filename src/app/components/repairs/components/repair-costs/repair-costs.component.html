@@ -1,0 +1,157 @@
+<div class="box-info" [formGroup]="form">
+    <h4>Koszty naprawy:</h4>
+    <div class="container-fluid" formArrayName="parts">
+        <ng-container *ngFor="let part of parts.controls; let i = index">
+            <div class="row costs-row justify-content-end" [formGroupName]="i">
+                <div class="col-12 col-xl order-2 order-xl-1">
+                    <div class="row">
+                        <!-- NAME INPUT-->
+                        <div class="col-12 col-lg-6 col-xl-6">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Nazwa</mat-label>
+                                <input matInput placeholder="Wymiana koła" formControlName="name" />
+                                <mat-error
+                                    *ngIf="part.get('name')?.errors && part.get('name')?.touched"
+                                    >{{ getFormError('pattern', part.get('name')) }}</mat-error
+                                >
+                            </mat-form-field>
+                        </div>
+
+                        <!-- COUNT INPUT-->
+                        <div class="col-12 col-sm-6 col-lg-3 col-xl-3">
+                            <mat-form-field appearance="outline" floatLabel="always">
+                                <mat-label>Ilość</mat-label>
+                                <input
+                                    type="number"
+                                    min="1"
+                                    matInput
+                                    placeholder="1"
+                                    formControlName="count"
+                                    (keyup)="setCount(i)"
+                                    (change)="setCount(i)"
+                                />
+                                <mat-error
+                                    *ngIf="part.get('count')?.errors && part.get('count')?.touched"
+                                    >{{
+                                        getFormError('floatPattern', part.get('count'))
+                                    }}</mat-error
+                                >
+                            </mat-form-field>
+                        </div>
+
+                        <!--TAX INPUT  -->
+                        <div class="col-12 col-sm-6 col-lg-3 col-xl-3">
+                            <mat-form-field appearance="outline" floatLabel="always">
+                                <mat-label>VAT</mat-label>
+                                <input
+                                    class="input-right-align"
+                                    appPriceFormat
+                                    matInput
+                                    placeholder="23"
+                                    formControlName="tax"
+                                    (keyup)="setPriceBuy(i)"
+                                />
+                                <span matSuffix>%</span>
+                                <mat-error
+                                    *ngIf="part.get('tax')?.errors && part.get('tax')?.touched"
+                                    >{{ getFormError('floatPattern', part.get('tax')) }}</mat-error
+                                >
+                            </mat-form-field>
+                        </div>
+
+                        <!-- PRICE BUY NETTO INPUT-->
+                        <div class="col-12 col-lg-4 col-xl-4">
+                            <mat-form-field appearance="outline" floatLabel="always">
+                                <mat-label>Cena netto </mat-label>
+                                <input
+                                    class="input-right-align"
+                                    appPriceFormat
+                                    matInput
+                                    placeholder="100"
+                                    formControlName="priceBuyNetto"
+                                    (keyup)="setPriceBuy(i)"
+                                />
+                                <span matSuffix>PLN</span>
+                                <mat-error
+                                    *ngIf="
+                                        part.get('priceBuyNetto')?.errors &&
+                                        part.get('priceBuyNetto')?.touched
+                                    "
+                                    >{{
+                                        getFormError('floatPattern', part.get('priceBuyNetto'))
+                                    }}</mat-error
+                                >
+                            </mat-form-field>
+                        </div>
+
+                        <!-- PRICE_NETTO INPUT -->
+                        <div class="col-12 col-lg-4 col-xl-4">
+                            <mat-form-field appearance="outline" floatLabel="always">
+                                <mat-label>Wartość netto</mat-label>
+                                <input
+                                    class="input-right-align"
+                                    appPriceFormat
+                                    matInput
+                                    placeholder="100"
+                                    formControlName="priceNetto"
+                                    (keyup)="changePriceNetto(i)"
+                                />
+                                <span matSuffix>PLN</span>
+                                <mat-error
+                                    *ngIf="
+                                        part.get('priceNetto')?.errors &&
+                                        part.get('priceNetto')?.touched
+                                    "
+                                    >{{
+                                        getFormError('floatPattern', part.get('priceNetto'))
+                                    }}</mat-error
+                                >
+                            </mat-form-field>
+                        </div>
+
+                        <!-- PRICE_BRUTTO-->
+                        <div class="col-12 col-lg-4 col-xl-4">
+                            <mat-form-field appearance="outline" floatLabel="always">
+                                <mat-label>Wartość brutto</mat-label>
+                                <input
+                                    class="input-right-align"
+                                    appPriceFormat
+                                    matInput
+                                    placeholder="123"
+                                    formControlName="priceBrutto"
+                                    (keyup)="changePriceBrutto(i)"
+                                />
+                                <span matSuffix>PLN</span>
+                                <mat-error
+                                    *ngIf="
+                                        part.get('priceBrutto')?.errors &&
+                                        part.get('priceBrutto')?.touched
+                                    "
+                                    >{{
+                                        getFormError('floatPattern', part.get('priceBrutto'))
+                                    }}</mat-error
+                                >
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+                <div id="button-delete-line" class="col-auto order-1 order-xl-2">
+                    <button
+                        mat-flat-button
+                        color="warn"
+                        class="button-big"
+                        (click)="deletePart(i)"
+                        [style.font-size]="'26px'"
+                    >
+                        &Cross;
+                    </button>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="add-new-part-button-line">
+        <button mat-flat-button color="accent" class="button-big" (click)="addNewPart()">
+            kolejny koszt
+        </button>
+    </div>
+</div>

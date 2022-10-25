@@ -1,35 +1,34 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VehiclesComponent } from './vehicles/vehicles.component';
+import { VehiclesListComponent } from './vehicles-list/vehicles-list.component';
 import { VehicleDeleteDialogComponent } from './dialogs/vehicle-delete-dialog/vehicle-delete-dialog.component';
-import { VehicleFormDialogComponent } from './vehicle-form-dialog/vehicle-form-dialog.component';
+import { VehicleFormDialogComponent } from './dialogs/vehicle-form-dialog/vehicle-form-dialog.component';
 import { VehiclesRoutingModule } from './vehicles-routing.module';
 import {
     MatAutocompleteModule,
     MatDialogModule,
     MatFormModule,
     MatProgressSpinnerModule,
+    MatTabsModule,
 } from '../../modules/angular-material/angular-material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { VehiclesService } from './vehicles.service';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { CarEditComponent } from './car-edit/car-edit.component';
-import { ClientsService } from '../../services/clients.service';
-import { HttpLoadingStatusInterceptor } from '../../interceptor/http-loading-status/http-loading-status.interceptor';
+import { HttpClientModule } from '@angular/common/http';
+import { VehicleInfoComponent } from './vehicle-info/vehicle-info.component';
 import { PipesModule } from '../../pipes/pipes.module';
-import { BeforeTableComponent } from '../before-table/before-table.component';
-import { ActionButtonComponent } from '../action-button/action-button.component';
+import { BeforeTableStandaloneComponent } from '../before-table/before-table.standalone-component';
+import { ActionButtonStandaloneComponent } from '../action-button/action-button.standalone-component';
 import { VehiclesSelectActionDialogComponent } from './dialogs/vehicles-select-action-dialog/vehicles-select-action-dialog.component';
-import { VehiclesTableComponent } from './vehicles-table/vehicles-table.component';
-import { DashboardHeaderComponent } from '../dashboard-header/dashboard-header.component';
+import { VehiclesTableStandaloneComponent } from './vehicles-table/vehicles-table.standalone-component';
+import { PageHeaderStandaloneComponent } from '../page-header/page-header.standalone-component';
 import { MatButtonModule } from '@angular/material/button';
+import { HttpInterceptorsModule } from '../../modules/http-interceptors/http-interceptors.module';
 
 @NgModule({
     declarations: [
-        VehiclesComponent,
+        VehiclesListComponent,
         VehicleFormDialogComponent,
         VehicleDeleteDialogComponent,
-        CarEditComponent,
+        VehicleInfoComponent,
         VehiclesSelectActionDialogComponent,
     ],
     imports: [
@@ -38,24 +37,17 @@ import { MatButtonModule } from '@angular/material/button';
         ReactiveFormsModule,
         HttpClientModule,
         PipesModule,
-        BeforeTableComponent,
-        ActionButtonComponent,
-        VehiclesTableComponent,
-        DashboardHeaderComponent,
+        BeforeTableStandaloneComponent,
+        ActionButtonStandaloneComponent,
+        VehiclesTableStandaloneComponent,
+        PageHeaderStandaloneComponent,
         MatFormModule,
         MatDialogModule,
         MatButtonModule,
         MatProgressSpinnerModule,
         MatAutocompleteModule,
-    ],
-    providers: [
-        VehiclesService,
-        ClientsService,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: HttpLoadingStatusInterceptor,
-            multi: true,
-        },
+        MatTabsModule,
+        HttpInterceptorsModule,
     ],
 })
 export class VehiclesModule {}

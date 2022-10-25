@@ -1,10 +1,11 @@
 import { AfterViewInit, Component, ViewChild, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Client } from '../../../interface/client';
+import { Client } from '../../../interface/client.interface';
 import { ClientDeleteDialogComponent } from '../dialogs/client-delete-dialog/client-delete-dialog.component';
-import { setSuccessSnackbar } from '../../snackbar/store/snackbar.actions';
+import { setSuccessSnackbar } from '../../../store/snackbar/snackbar.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
+import { DashboardHeaderNavi } from '../../../interface/dashboard-header-navi.interface';
 
 @Component({
     selector: 'app-client-info',
@@ -12,14 +13,14 @@ import { Store } from '@ngrx/store';
     styleUrls: ['./client-info.component.scss'],
 })
 export class ClientInfoComponent implements AfterViewInit {
-    /**
-     *   GETTERS / SETTERS / INPUTES / OUTPUTES ETC.
-     **/
+    /**  GETTERS / SETTERS / INPUTES / OUTPUTES ETC.   **/
     @ViewChild('infoTab', { read: ViewContainerRef }) infoTab!: ViewContainerRef;
     @ViewChild('vehiclesTab', { read: ViewContainerRef }) vehiclesTab!: ViewContainerRef;
     @ViewChild('repairsTab', { read: ViewContainerRef }) repairsTab!: ViewContainerRef;
 
     client!: Client;
+
+    headerNavi!: DashboardHeaderNavi[];
 
     /** TABS **/
     private tabs = [
@@ -54,10 +55,7 @@ export class ClientInfoComponent implements AfterViewInit {
         });
     }
 
-    /**
-     *   CONSTRUCTOR
-     **/
-
+    /***************  CONSTRUCTOR  ***************/
     constructor(
         private routeSnapshot: ActivatedRoute,
         private dialogService: MatDialog,
@@ -65,46 +63,53 @@ export class ClientInfoComponent implements AfterViewInit {
         private store: Store
     ) {}
 
-    /**
-     *   LIFE-CYCLES COMPONTENT
-     **/
-
+    /** LIFE-CYCLES COMPONTENT **/
     ngOnInit(): void {
         this.client = this.routeSnapshot.snapshot.data['client'];
 
         this.openTab();
+
+        this.headerNavi = [
+            {
+                title: 'Lista klientów',
+                url: '/dashboard/clients',
+            },
+            {
+                title: 'Klient',
+                url: `/dashboard/clients/info/${this.client.id}`,
+            },
+        ];
     }
 
     ngAfterViewInit() {
         this.changedTab(this.tabActive);
     }
 
-    /**
-     *   METHODS
-     **/
-
+    /***************  METHODS   ***************/
     async getInfoComponent() {
         this.infoTab.clear();
-        const { ClientInfoComponent } = await import('./tabs/client-info/client-info.component');
-        const _compontent = this.infoTab.createComponent(ClientInfoComponent);
+        const { ClientInfoStandaloneComponent } = await import(
+            './tabs/client-info/client-info.standalone-component'
+        );
+        const _compontent = this.infoTab.createComponent(ClientInfoStandaloneComponent);
         _compontent.instance.client = this.client;
     }
 
     async getVehiclesComponent() {
         this.vehiclesTab.clear();
-        const { ClientVehiclesComponent } = await import(
-            './tabs/client-vehicles/client-vehicles.component'
+        const { ClientVehiclesStandaloneComponent } = await import(
+            './tabs/client-vehicles/client-vehicles.standalone-component'
         );
-        const _compontent = this.vehiclesTab.createComponent(ClientVehiclesComponent);
+        const _compontent = this.vehiclesTab.createComponent(ClientVehiclesStandaloneComponent);
         _compontent.instance.clientId = this.client.id || '';
     }
 
     async getRepairsComponent() {
         this.repairsTab.clear();
-        const { ClientRepairsComponent } = await import(
-            './tabs/client-repairs/client-repairs.component'
+        const { ClientRepairsStandaloneComponent } = await import(
+            './tabs/client-repairs/client-repairs.standalone-component'
         );
-        const _compontent = this.repairsTab.createComponent(ClientRepairsComponent);
+        const _compontent = this.repairsTab.createComponent(ClientRepairsStandaloneComponent);
         _compontent.instance.clientId = this.client.id || '';
     }
 
@@ -118,7 +123,11 @@ export class ClientInfoComponent implements AfterViewInit {
     openTab(): void {
         if (this.routeSnapshot.snapshot.queryParamMap.has('tab')) {
             const tab = this.routeSnapshot.snapshot.queryParams['tab'];
-            this.tabActive = this.tabs.indexOf(tab) >= 0 ? this.tabs.indexOf(tab) : 0;
+            this.tabs.forEach((value, index) => {
+                if (value.slug === tab) {
+                    this.tabActive = index;
+                }
+            });
         }
     }
 

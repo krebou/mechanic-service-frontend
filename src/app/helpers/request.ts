@@ -1,4 +1,4 @@
-import { GetAllRequestWhere } from '../interface/getAll';
+import { GetAllRequestWhere } from '../interface/httpClient.interface';
 import { HttpParams } from '@angular/common/http';
 
 export function getAllRequestWhere<T>(

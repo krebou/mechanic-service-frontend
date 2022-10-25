@@ -2,16 +2,19 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { catchError, forkJoin, map, of } from 'rxjs';
-import { setSnackbar } from '../../../snackbar/store/snackbar.actions';
-import { VehiclesService } from '../../vehicles.service';
+import { setSnackbar } from '../../../../store/snackbar/snackbar.actions';
+import { VehiclesService } from '../../../../services/vehicles.service';
 
 @Component({
-    selector: 'app-vehicles-select-action-dialog',
+    selector: 'app-vehicles-list-select-action-dialog',
     templateUrl: './vehicles-select-action-dialog.component.html',
-    styleUrls: ['./vehicles-select-action-dialog.component.scss'],
 })
 export class VehiclesSelectActionDialogComponent {
+    /***************  GETTERS / SETTERS / INPUTES / OUTPUTES ETC.  ***************/
+
     count = this.dialogData.selected.length;
+
+    /***************  CONSTRUCTOR  ***************/
 
     constructor(
         @Inject(MAT_DIALOG_DATA) private dialogData: { action: string; selected: string[] },
@@ -19,6 +22,8 @@ export class VehiclesSelectActionDialogComponent {
         private vehiclesService: VehiclesService,
         private store: Store
     ) {}
+
+    /***************  METHODS   ***************/
 
     makeAction(): void {
         const selection = this.dialogData.selected.map((value) =>

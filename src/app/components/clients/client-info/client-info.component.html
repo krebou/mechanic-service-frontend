@@ -1,9 +1,9 @@
 <div id="clients-list-view" class="template-padding">
-    <app-dashboard-header>
+    <app-page-header [headerNavi]="headerNavi">
         <button right mat-flat-button class="button-big" color="warn" (click)="deleteClient()">
             Usuń klienta
         </button>
-    </app-dashboard-header>
+    </app-page-header>
 
     <div class="container-fluid" [style.padding]="0">
         <div class="row"></div>

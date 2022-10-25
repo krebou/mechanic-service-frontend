@@ -1,0 +1,53 @@
+@import "variables";
+@import "mixins";
+
+.box-info{
+  display: flex;
+}
+
+.box-link{
+  text-decoration: none;
+  transition: 0.2s all linear;
+  &:hover{
+    outline: 5px solid #fff;
+    background: $themeColor2;
+  }
+
+  .row{
+    width: 100%;
+  }
+  .icon{
+    display: flex;
+    justify-content: center;
+    width: 120px;
+  }
+
+  .text{
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+
+    h4{
+      margin: 0;
+      padding: 0;
+    }
+
+    span{
+      margin-top: 15px;
+    }
+  }
+}
+
+@include rwd('maxXL'){
+  #dashboard-links{
+    .col-12{
+      &:not(&:first-child){
+        margin-top: 50px;
+      }
+    }
+  }
+
+}

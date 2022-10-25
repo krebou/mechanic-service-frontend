@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { RepairCostsComponent } from './repair-costs.component';
+
+describe('RepairCostsComponent', () => {
+  let component: RepairCostsComponent;
+  let fixture: ComponentFixture<RepairCostsComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ RepairCostsComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(RepairCostsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

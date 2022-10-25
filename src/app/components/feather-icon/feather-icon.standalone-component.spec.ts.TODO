@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { FeatherIconStandaloneComponent } from './feather-icon.standalone-component';
+
+describe('FeatherIconComponent', () => {
+    let component: FeatherIconStandaloneComponent;
+    let fixture: ComponentFixture<FeatherIconStandaloneComponent>;
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [FeatherIconStandaloneComponent],
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(FeatherIconStandaloneComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+});

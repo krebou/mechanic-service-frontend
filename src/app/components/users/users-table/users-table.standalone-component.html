@@ -1,0 +1,119 @@
+<div class="row align-items-center no-gutters justify-content-center before-table">
+    <div class="col-12 col-lg-6 order-2 order-lg-1">
+        <app-before-table
+            (action)="selectedAction($event)"
+            [count]="selection.selected.length"
+        ></app-before-table>
+    </div>
+    <div class="col-12 col-lg-6 order-1 order-lg-2">
+        <mat-paginator
+            [length]="tableResultsLength"
+            [pageSize]="tablePageSize"
+            aria-label="Paginator 1"
+        ></mat-paginator>
+    </div>
+</div>
+
+<div class="table-container">
+    <table
+        mat-table
+        [dataSource]="data"
+        matSort
+        matSortActive="createdAt"
+        matSortDisableClear
+        matSortDirection="desc"
+    >
+        <!-- Select Column -->
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox
+                    color="primary"
+                    value="all"
+                    (change)="onSelectAllCheckbox($event)"
+                    [checked]="selectedAll"
+                ></mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row; let i = index">
+                <mat-checkbox
+                    color="primary"
+                    (click)="$event.stopPropagation()"
+                    (change)="onSelectSingleCheckbox(row.id)"
+                    [checked]="selection.isSelected(row.id)"
+                ></mat-checkbox>
+            </td>
+        </ng-container>
+
+        <!-- Firstname Column -->
+        <ng-container matColumnDef="firstname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>Imię</th>
+            <td mat-cell *matCellDef="let row">
+                <span>{{ row.firstname }}</span>
+                <p class="d-sm-none">
+                    <app-action-button (action)="onMenuAction($event, row)"></app-action-button>
+                </p>
+            </td>
+        </ng-container>
+
+        <!-- Lastname Column -->
+        <ng-container matColumnDef="lastname">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nazwisko</th>
+            <td mat-cell *matCellDef="let row">{{ row.lastname }}</td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+            <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+        </ng-container>
+
+        <!-- Type Column -->
+        <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Typ</th>
+            <td mat-cell *matCellDef="let row">{{ row.role | userRole }}</td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <td mat-cell *matCellDef="let row">{{ row.status | userStatus }}</td>
+        </ng-container>
+
+        <!-- Created Column -->
+        <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Dodany</th>
+            <td mat-cell *matCellDef="let row">
+                {{ row.createdAt | date: 'dd/MM/y' }} <br />
+                o godz. {{ row.createdAt | date: 'HH:mm' }}
+            </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let row; let index = index">
+                <app-action-button (action)="onMenuAction($event, row)"></app-action-button>
+            </td>
+        </ng-container>
+
+        <!-- EMPTY TABLE INFO -->
+        <tr class="mat-row" *matNoDataRow>
+            <td
+                class="mat-cell"
+                [colSpan]="displayedColumns.length"
+                [style.text-align]="'center'"
+                [style.font-size]="'18px !important'"
+            >
+                Brak danych do wyświetlenia
+            </td>
+        </tr>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+</div>
+
+<mat-paginator
+    [length]="tableResultsLength"
+    [pageSize]="tablePageSize"
+    aria-label="Paginator 2"
+></mat-paginator>

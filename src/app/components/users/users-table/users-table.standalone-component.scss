@@ -1,0 +1,31 @@
+@import "mixins";
+
+.mat-column-role, .mat-column-status{
+  text-align: center;
+}
+
+@include rwd('max1600'){
+  .mat-column-email{
+    display: none;
+  }
+}
+
+
+@include rwd('maxXL'){
+  .mat-column-lastname{
+    display: none;
+  }
+}
+
+@include rwd('maxMD'){
+  .mat-column-role, .mat-column-status{
+    display: none;
+  }
+}
+
+@include rwd('maxSM'){
+  .mat-column-action{
+    display: none;
+  }
+}
+

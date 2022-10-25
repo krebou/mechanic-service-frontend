@@ -1,0 +1,50 @@
+@import "variables";
+
+$width: 450px;
+
+#login-page {
+  display: flex;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: #000;
+
+  &-left{
+    width: calc( 100% - $width);
+    min-height: 100vh;
+
+    background: url('~/src/assets/images/pexels-cottonbro-4488642.jpg') center center no-repeat;
+    background-size: cover;
+    color:#ccc;
+    background-color: $themeColor2;
+
+    opacity: 0.5;
+  }
+
+  &-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: $width;
+    height: 100%;
+
+    padding: 35px;
+
+    background: #fff;
+    color:#000;
+
+    h1{
+      color: $themeColor3;
+    }
+
+  }
+}
+
+.auth-error{
+  padding: 5px;
+  border-bottom: 2px solid red;
+  color:red;
+
+
+}

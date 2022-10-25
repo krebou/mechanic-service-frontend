@@ -5,6 +5,8 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
     standalone: true,
 })
 export class InputPriceFormatDirective {
+    /***************  GETTERS / SETTERS / INPUTES / OUTPUTES ETC.  ***************/
+
     @HostListener('keydown', ['$event'])
     onKeydown(event: KeyboardEvent) {
         const value = this.element.nativeElement.value as string;
@@ -51,6 +53,8 @@ export class InputPriceFormatDirective {
         'Tab',
         'Esc',
     ];
+
+    /***************  CONSTRUCTOR  ***************/
 
     constructor(private element: ElementRef) {}
 }

@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { UsersSelectActionDialogComponent } from './users-select-action-dialog.component';
+
+describe('UsersSelectActionDialogComponent', () => {
+  let component: UsersSelectActionDialogComponent;
+  let fixture: ComponentFixture<UsersSelectActionDialogComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ UsersSelectActionDialogComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(UsersSelectActionDialogComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

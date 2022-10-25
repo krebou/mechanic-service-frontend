@@ -299,7 +299,7 @@ td.mat-column-name {
 }
 
 .mat-sort-header{
-  &:not(.mat-column-name, .mat-column-plate, .mat-column-mark, .mat-column-model){
+  &:not(.mat-column-name, .mat-column-plate, .mat-column-mark, .mat-column-model, .mat-column-firstname, .mat-column-lastname){
     .mat-sort-header-container{
       justify-content: center;
     }

@@ -1,0 +1,11 @@
+<div id="site-topbar" class="active" [ngClass]="{ active: (sidemenu$ | async)?.show }">
+    <div id="site-topbar-left">
+        <feather-icon class="toogleMenu" icon="menu" (click)="toogleMenu()"></feather-icon>
+    </div>
+    <div id="site-topbar-right">
+        <div id="topbar-name"><small>Witaj,</small><br />{{ (user$ | async)?.firstname }}!</div>
+        <div>
+            <button mat-flat-button color="warn" (click)="logout()">Wyloguj się</button>
+        </div>
+    </div>
+</div>

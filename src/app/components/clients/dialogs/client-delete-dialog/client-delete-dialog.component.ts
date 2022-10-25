@@ -1,20 +1,18 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import {
-    setSnackbar,
-    setSuccessSnackbar,
-    setWarnSnackbar,
-} from '../../../snackbar/store/snackbar.actions';
+import { ChangeDetectionStrategy, Component, Inject } from '@angular/core';
+import { setSuccessSnackbar, setWarnSnackbar } from '../../../../store/snackbar/snackbar.actions';
 import { ClientsService } from '../../../../services/clients.service';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Client } from '../../../../interface/client';
+import { Client } from '../../../../interface/client.interface';
 import { Store } from '@ngrx/store';
 
 @Component({
     selector: 'app-client-info-delete-dialogs',
     templateUrl: './client-delete-dialog.component.html',
-    styleUrls: ['./client-delete-dialog.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientDeleteDialogComponent {
+    /***************  CONSTRUCTOR  ***************/
+
     constructor(
         private clientService: ClientsService,
         private dialog: MatDialog,
@@ -22,6 +20,8 @@ export class ClientDeleteDialogComponent {
         private store: Store,
         private dialogRef: MatDialogRef<ClientDeleteDialogComponent>
     ) {}
+
+    /***************  METHODS   ***************/
 
     deleteClient(): void {
         if (this.dialogData.id) {

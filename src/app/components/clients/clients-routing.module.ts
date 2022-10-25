@@ -4,7 +4,7 @@ import { ClientsListComponent } from './clients-list/clients-list.component';
 import { ClientInfoComponent } from './client-info/client-info.component';
 import { ClientsListResolver } from '../../resolvers/clients-list.resolver';
 import { ClientInfoResolver } from '../../resolvers/client-info.resolver';
-import { HttpClientModule } from '@angular/common/http';
+import { IsLoggedLoadGuard } from '../../guards/is-logged-load.guard';
 
 const routes: Routes = [
     {
@@ -15,6 +15,7 @@ const routes: Routes = [
         resolve: {
             clients: ClientsListResolver,
         },
+        canActivate: [IsLoggedLoadGuard],
     },
     {
         path: 'info/:id',
@@ -23,11 +24,12 @@ const routes: Routes = [
         resolve: {
             client: ClientInfoResolver,
         },
+        canActivate: [IsLoggedLoadGuard],
     },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes), HttpClientModule],
-    exports: [RouterModule, HttpClientModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
 export class ClientsRoutingModule {}

@@ -57,22 +57,18 @@ export class FormValidator {
         };
     };
 
-    mustMatch(controlName: string, matchingControlName: string) {
-        return (formGroup: FormGroup) => {
-            const control = formGroup.controls[controlName];
-            const matchingControl = formGroup.controls[matchingControlName];
+    passwordsMustMatch() {
+        return (control: AbstractControl) => {
+            const password = control.get('password');
+            const password_repeat = control.get('password_repeat');
 
-            if (matchingControl.errors && !matchingControl.hasError('mustMatch')) {
-                // return if another validator has already found an error on the matchingControl
-                return;
-            }
-
-            // set error on matchingControl if validation fails
-            if (control.value !== matchingControl.value) {
-                matchingControl.setErrors({ mustMatch: true });
+            if (password?.value !== password_repeat?.value) {
+                password_repeat?.setErrors({ mustMatchPassword: true });
             } else {
-                matchingControl.setErrors(null);
+                password_repeat?.setErrors(null);
             }
+
+            return null;
         };
     }
 
@@ -86,6 +82,9 @@ export class FormValidator {
             | null
     ): string {
         // console.log(control);
+        //PASSWORD REPEAT ERROR
+        if (control?.hasError('mustMatchPassword')) return 'Powtórzone hasło musi być takie samo';
+        // email ERROR
         if (control?.hasError('email')) return 'Niepoprawny adres E-mail';
         // PLATE ERRORS
         if (control?.hasError('pattern') && name === 'plate') return 'Niedozwolone znaki';
@@ -113,6 +112,12 @@ export class FormValidator {
             return `Liczba nie może być większa niż ${control.errors?.['max'].max} `;
         if (control?.hasError('min'))
             return `Liczba nie może być mniejsza niż: ${control.errors?.['min'].min} `;
+
+        if (control?.hasError('minlength'))
+            return `Musi być co najmniej ${control.errors?.['minlength'].requiredLength} znaków`;
+
+        if (control?.hasError('maxlength'))
+            return `Musi być maksymalnie ${control.errors?.['maxlength'].requiredLength} znaków`;
 
         if (control?.hasError('pattern')) return 'Niedozwolone znaki';
 

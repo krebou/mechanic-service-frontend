@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { UsersTableStandaloneComponent } from './users-table.standalone-component';
+
+describe('UsersTableComponent', () => {
+    let component: UsersTableStandaloneComponent;
+    let fixture: ComponentFixture<UsersTableStandaloneComponent>;
+
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [UsersTableStandaloneComponent],
+        }).compileComponents();
+
+        fixture = TestBed.createComponent(UsersTableStandaloneComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+});

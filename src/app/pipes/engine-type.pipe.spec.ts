@@ -1,8 +1,21 @@
 import { EngineTypePipe } from './engine-type.pipe';
 
 describe('EngineTypePipe', () => {
-  it('create an instance', () => {
-    const pipe = new EngineTypePipe();
-    expect(pipe).toBeTruthy();
-  });
+    let pipe: EngineTypePipe;
+
+    beforeEach(() => {
+        pipe = new EngineTypePipe();
+    });
+
+    it('create an instance', () => {
+        expect(pipe).toBeTruthy();
+    });
+
+    it('should only accept valid type', () => {
+        expect(pipe.transform('PETROL')).not.toEqual('none');
+    });
+
+    it('should return name of type', () => {
+        expect(pipe.transform('PETROL')).toBe(pipe['engineTypes'].PETROL);
+    });
 });

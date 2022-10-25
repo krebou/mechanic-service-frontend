@@ -1,22 +1,22 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-const GENDERS = {
-    female: 'Kobieta',
-    male: 'Meżczyzna',
-    divers: 'Divers',
-};
-
 @Pipe({
     name: 'gender',
 })
 export class GenderPipe implements PipeTransform {
+    private type = {
+        female: 'Kobieta',
+        male: 'Meżczyzna',
+        divers: 'Divers',
+    };
+
     transform(value: string = ''): string {
-        if (isValidGender(value, GENDERS)) return GENDERS[value];
+        if (this.isValid(value, this.type)) return this.type[value];
 
         return value;
     }
-}
 
-function isValidGender(prop: string, obj: any): prop is keyof typeof GENDERS {
-    return obj.hasOwnProperty(prop);
+    isValid(prop: string, obj: any): prop is keyof typeof this.type {
+        return obj.hasOwnProperty(prop);
+    }
 }

@@ -1,0 +1,99 @@
+<div class="row d-flex align-items-stretch">
+    <div class="col-12 col-xl-6">
+        <div class="box-info">
+            <h4>Klient:</h4>
+
+            <!-- NAME -->
+            <div class="bi-tr" id="bi-tr-name">
+                <div class="bi-th">
+                    {{ client?.type === 'personal' ? 'Imię i nazwisko:' : 'Nazwa firmy' }}
+                </div>
+                <div class="bi-td">{{ client?.name }}</div>
+            </div>
+
+            <p></p>
+
+            <!-- TAXNUMBER -->
+            <div class="bi-tr" id="bi-tr-taxNumber" *ngIf="client?.type === 'business'">
+                <div class="bi-th">NIP:</div>
+                <div class="bi-td">{{ client?.taxNumber }}</div>
+            </div>
+
+            <!-- PHONE -->
+            <div class="bi-tr" id="bi-tr-phone">
+                <div class="bi-th">Telefon</div>
+                <div class="bi-td">{{ client?.phone }}</div>
+            </div>
+
+            <!-- EMAIL -->
+            <div class="bi-tr" id="bi-tr-email">
+                <div class="bi-th">Email</div>
+                <div class="bi-td">{{ client?.email || '-' }}</div>
+            </div>
+
+            <!-- GENDER -->
+            <div class="bi-tr" id="bi-tr-gender">
+                <div class="bi-th">Płeć</div>
+                <div class="bi-td">{{ client?.gender | gender }}</div>
+            </div>
+
+            <p></p>
+
+            <!-- Ulica  -->
+            <div class="bi-tr" id="bi-tr-street">
+                <div class="bi-th">Ulica:</div>
+                <div class="bi-td">{{ client?.street || '-' }}</div>
+            </div>
+
+            <!-- CITY -->
+            <div class="bi-tr" id="bi-tr-city">
+                <div class="bi-th">Miasto:</div>
+                <div class="bi-td">{{ client?.city || '-' }}</div>
+            </div>
+
+            <!-- ZIPCODE -->
+            <div class="bi-tr" id="bi-tr-zipCode">
+                <div class="bi-th">Kod pocztowy:</div>
+                <div class="bi-td">{{ client?.zipCode || '-' }}</div>
+            </div>
+
+            <div class="button-line">
+                <button
+                    id="edit-client"
+                    mat-flat-button
+                    color="primary"
+                    class="button-big"
+                    (click)="editClient()"
+                >
+                    Edytuj
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-xl-6">
+        <div class="box-info">
+            <h4>Informacje ogólne:</h4>
+
+            <!-- ID -->
+            <div class="bi-tr" id="bi-tr-id">
+                <div class="bi-th">ID:</div>
+                <div class="bi-td">{{ client?.id }}</div>
+            </div>
+
+            <p></p>
+
+            <!-- CREATEDAT -->
+            <div class="bi-tr" id="bi-tr-createdAt">
+                <div class="bi-th">Stworzony:</div>
+                <div class="bi-td">{{ client?.createdAt | date: 'dd.MM.y o HH:mm' }}</div>
+            </div>
+
+            <!-- UPDATEDAT -->
+            <div class="bi-tr" id="bi-tr-updatedAt">
+                <div class="bi-th">Ostatnia edycja:</div>
+                <div class="bi-td">{{ client?.updatedAt | date: 'dd.MM.y o HH:mm' }}</div>
+            </div>
+        </div>
+    </div>
+</div>

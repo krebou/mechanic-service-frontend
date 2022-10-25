@@ -1,0 +1,40 @@
+@import '../../../../../assets/scss/mixins';
+
+.mat-column-status{
+  width: 160px;
+  text-align: center;
+}
+.mat-column-type{
+  width: 160px;
+  text-align: center;
+}
+
+.mat-column-plate{
+  width: 200px;
+}
+
+@include rwd('maxXL'){
+  .mat-column-type{
+    display: none;
+  }
+}
+
+@include rwd('maxMD'){
+  .mat-column-plate{
+    display: none;
+  }
+}
+
+@include rwd('maxSM'){
+  .mat-column-action, .mat-column-status{
+    display: none;
+  }
+}
+
+
+@include rwd('max450'){
+  .mat-column-createdAt{
+    display: none;
+  }
+}
+

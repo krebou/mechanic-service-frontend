@@ -1,0 +1,101 @@
+<div class="row d-flex align-items-stretch">
+    <div class="col-12 col-xl-6">
+        <div class="box-info">
+            <h4>Pojazd:</h4>
+
+            <!-- TYPE -->
+            <div class="bi-tr" id="bi-tr-type">
+                <div class="bi-th">Typ pojazdu</div>
+                <div class="bi-td">{{ vehicle?.type }}</div>
+            </div>
+
+            <!-- PLATE -->
+            <div class="bi-tr" id="bi-tr-name">
+                <div class="bi-th">Rejestracja</div>
+                <div class="bi-td">{{ vehicle?.plate }}</div>
+            </div>
+
+            <!-- VIN -->
+            <div class="bi-tr" id="bi-tr-vin">
+                <div class="bi-th">VIN</div>
+                <div class="bi-td">{{ vehicle?.vin }}</div>
+            </div>
+
+            <p></p>
+
+            <!-- MARK -->
+            <div class="bi-tr" id="bi-tr-mark">
+                <div class="bi-th">Marka</div>
+                <div class="bi-td">{{ vehicle?.mark }}</div>
+            </div>
+
+            <!-- MODEL -->
+            <div class="bi-tr" id="bi-tr-model">
+                <div class="bi-th">Model</div>
+                <div class="bi-td">{{ vehicle?.model }}</div>
+            </div>
+
+            <!-- YEAR -->
+            <div class="bi-tr" id="bi-tr-year">
+                <div class="bi-th">Rok produkcji:</div>
+                <div class="bi-td">{{ vehicle?.year }}</div>
+            </div>
+
+            <p></p>
+
+            <!-- YEAR -->
+            <div class="bi-tr" id="bi-tr-engineType">
+                <div class="bi-th">Rok produkcji:</div>
+                <div class="bi-td">{{ vehicle.engine?.engineType }}</div>
+            </div>
+
+            <!-- ENGINE_SIZE -->
+            <div class="bi-tr" id="bi-tr-engineSize">
+                <div class="bi-th">Pojemność silnika:</div>
+                <div class="bi-td">{{ vehicle.engine?.engineSize | number: '1.1-1' }} L</div>
+            </div>
+
+            <!-- ENGINE_POWER -->
+            <div class="bi-tr" id="bi-tr-enginePower">
+                <div class="bi-th">Moc silnika:</div>
+                <div class="bi-td">{{ vehicle.engine?.enginePower }} KM</div>
+            </div>
+
+            <div class="button-line">
+                <button mat-flat-button color="primary" class="button-big" (click)="editVehicle()">
+                    Edytuj
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-xl-6">
+        <div class="box-info">
+            <h4>Informacje ogólne:</h4>
+
+            <!-- ID -->
+            <div class="bi-tr" id="bi-tr-id">
+                <div class="bi-th">ID:</div>
+                <div class="bi-td">{{ vehicle.id }}</div>
+            </div>
+
+            <p></p>
+
+            <!-- CREATEDAT -->
+            <div class="bi-tr" id="bi-tr-createdAt">
+                <div class="bi-th">Stworzony:</div>
+                <div class="bi-td">
+                    {{ vehicle.createdAt | date: 'dd.MM.y o HH:mm' }}
+                </div>
+            </div>
+
+            <!-- UPDATEDAT -->
+            <div class="bi-tr" id="bi-tr-updatedAt">
+                <div class="bi-th">Ostatnia edycja:</div>
+                <div class="bi-td">
+                    {{ vehicle.updatedAt | date: 'dd.MM.y o HH:mm' }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,14 +3,14 @@
     [ngClass]="{ active: (sidemenu$ | async)?.show && (sidemenu$ | async)?.mobile }"
     (click)="closeMenu()"
 ></div>
-<app-sidemenu></app-sidemenu>
+<app-dashboard-sidemenu></app-dashboard-sidemenu>
 <div id="dashboard-content" [ngClass]="{ active: (sidemenu$ | async)?.show }">
     <mat-progress-bar
         class="progress-bar"
         mode="query"
         *ngIf="progressbar$ | async"
     ></mat-progress-bar>
-    <app-topbar></app-topbar>
+    <app-dashboard-topbar></app-dashboard-topbar>
     <router-outlet></router-outlet>
 </div>
 <app-snackbar></app-snackbar>

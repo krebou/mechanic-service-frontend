@@ -1,42 +1,35 @@
-import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { finalize, map, startWith, Subscription } from 'rxjs';
 import { FormValidator } from '../../../../helpers/validator/form.validator';
-import { Client } from '../../../../interface/client';
+import { Client, ClientFormGroup } from '../../../../interface/client.interface';
 import { Store } from '@ngrx/store';
 import { ClientsService } from '../../../../services/clients.service';
-import { setSuccessSnackbar, setWarnSnackbar } from '../../../snackbar/store/snackbar.actions';
+import { setSuccessSnackbar, setWarnSnackbar } from '../../../../store/snackbar/snackbar.actions';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 export type ClientFormDialogAction = 'add' | 'edit';
-
-interface ClientForm {
-    name: FormControl<string | null>;
-    type: FormControl<string>;
-    taxNumber: FormControl<string | null>;
-    phone: FormControl<string | null>;
-    email: FormControl<string | null>;
-    gender: FormControl<string>;
-    street: FormControl<string | null>;
-    city: FormControl<string | null>;
-    zipCode: FormControl<string | null>;
-}
 
 @Component({
     selector: 'app-client-info-form-dialogs',
     templateUrl: './client-form-dialog.component.html',
     styleUrls: ['./client-form-dialog.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientFormDialogComponent implements OnInit, OnDestroy {
+    /***************  GETTERS / SETTERS / INPUTES / OUTPUTES ETC.  ***************/
+
     action: ClientFormDialogAction = 'add';
     client!: Client;
 
-    form!: FormGroup<ClientForm>;
+    form!: FormGroup<ClientFormGroup>;
     private typeChange$!: Subscription;
 
     getFormError = this.formValidator.getFormError;
 
     isSaving = false;
+
+    /***************  CONSTRUCTOR  ***************/
 
     constructor(
         private formBuilder: FormBuilder,
@@ -47,6 +40,8 @@ export class ClientFormDialogComponent implements OnInit, OnDestroy {
         @Inject(MAT_DIALOG_DATA)
         private dialogData: { action: ClientFormDialogAction; client: Client }
     ) {}
+
+    /***************  LIFE-CYCLES COMPONENT   ***************/
 
     ngOnInit(): void {
         this.action = this.dialogData?.action;
@@ -70,6 +65,12 @@ export class ClientFormDialogComponent implements OnInit, OnDestroy {
                 },
             });
     }
+
+    ngOnDestroy() {
+        this.typeChange$.unsubscribe();
+    }
+
+    /***************  METHODS   ***************/
 
     createForm(): void {
         this.form = this.formBuilder.group({
@@ -171,9 +172,5 @@ export class ClientFormDialogComponent implements OnInit, OnDestroy {
                 message: 'Błąd, klient nie został zaktualizowany. Spróbuj ponownie za chwilę.',
             })
         );
-    }
-
-    ngOnDestroy() {
-        this.typeChange$.unsubscribe();
     }
 }

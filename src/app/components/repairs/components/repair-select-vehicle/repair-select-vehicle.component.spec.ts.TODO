@@ -1,0 +1,23 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { RepairSelectVehicleComponent } from './repair-select-vehicle.component';
+
+describe('RepairSelectVehicleComponent', () => {
+  let component: RepairSelectVehicleComponent;
+  let fixture: ComponentFixture<RepairSelectVehicleComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ RepairSelectVehicleComponent ]
+    })
+    .compileComponents();
+
+    fixture = TestBed.createComponent(RepairSelectVehicleComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
