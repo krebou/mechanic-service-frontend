@@ -29,7 +29,7 @@ class MatDialogRef {
     }
 }
 
-fdescribe('ClientInfoComponent', () => {
+describe('ClientInfoComponent', () => {
     let component: ClientInfoStandaloneComponent;
     let fixture: ComponentFixture<ClientInfoStandaloneComponent>;
     let el: DebugElement;
@@ -124,7 +124,7 @@ fdescribe('ClientInfoComponent', () => {
         expect(component.editClient).toHaveBeenCalledTimes(1);
     });
 
-    fit('should open dialog and afterClose get client', fakeAsync(() => {
+    it('should open dialog and afterClose get client', fakeAsync(() => {
         component.editClient();
         fixture.detectChanges();
         flush();
